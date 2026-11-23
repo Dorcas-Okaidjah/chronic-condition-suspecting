@@ -47,6 +47,7 @@ class Task:
     eligible: Callable[[pd.DataFrame], pd.Series]
     target: str
     notes: str = ""
+    hybrid_rule: Callable[[pd.DataFrame], pd.Series] | None = None
     extra: dict = field(default_factory=dict)
 
     def cohort(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -64,14 +65,15 @@ def _no_ckd_dx(df):
 
 TASKS = [
     Task("dm_visit", "Undiagnosed diabetes - visit data only", "diabetes", "hba1c",
-         C.VISIT_FEATURES + ["dx_prediabetes"], _no_dm_dx, "lab_diabetes"),
+         C.VISIT_FEATURES + ["dx_prediabetes", "dx_borderline"], _no_dm_dx, "lab_diabetes"),
     Task("dm_bmp", "Undiagnosed diabetes - visit + BMP on file", "diabetes", "hba1c",
-         C.VISIT_FEATURES + ["dx_prediabetes", "glucose_serum"],
-         lambda d: _no_dm_dx(d) & d["glucose_serum"].notna(), "lab_diabetes"),
+         C.VISIT_FEATURES + ["dx_prediabetes", "dx_borderline", "glucose_serum"],
+         lambda d: _no_dm_dx(d) & d["glucose_serum"].notna(), "lab_diabetes",
+         hybrid_rule=lambda d: d["glucose_serum"] >= 140),
     Task("ckd_visit", "Undiagnosed CKD - visit data only", "ckd", "uacr",
-         C.VISIT_FEATURES + ["dx_diabetes", "dx_prediabetes"], _no_ckd_dx, "lab_ckd"),
+         C.VISIT_FEATURES + ["dx_diabetes", "dx_prediabetes", "dx_borderline"], _no_ckd_dx, "lab_ckd"),
     Task("alb_bmp", "Albuminuria with normal eGFR - who needs a UACR", "ckd", "uacr",
-         C.VISIT_FEATURES + ["dx_diabetes", "dx_prediabetes"] + C.BMP_FEATURES,
+         C.VISIT_FEATURES + ["dx_diabetes", "dx_prediabetes", "dx_borderline"] + C.BMP_FEATURES,
          lambda d: _no_ckd_dx(d) & (d["egfr"] >= C.EGFR_CKD), "albuminuria"),
 ]
 TASKS_BY_NAME = {t.name: t for t in TASKS}

@@ -115,6 +115,9 @@ def harmonize(tables: dict[str, pd.DataFrame], cycle: str) -> pd.DataFrame:
     # questionnaire (what a PCP would know from the chart / history)
     out["dx_diabetes"] = _yes_no(_col(df, "DIQ010"))
     out["dx_prediabetes"] = _yes_no(_col(df, "DIQ160"))
+    # DIQ010 = 3 means "told borderline"; those people skip DIQ160, so in v1 this signal
+    # was hiding inside a "dx_prediabetes is missing" indicator.
+    out["dx_borderline"] = (_col(df, "DIQ010") == 3).astype(float)
     out["dx_kidney"] = _yes_no(_col(df, "KIQ022"))
     out["dx_htn"] = _yes_no(_col(df, "BPQ020"))
     out["bp_meds"] = _yes_no(_col(df, "BPQ150", "BPQ050A")).fillna(0.0)
@@ -175,7 +178,8 @@ def synthetic_raw_tables(cycle: str, n: int = 6000, seed: int = 0) -> dict[str, 
         "bmx": pd.DataFrame({"SEQN": seqn, "BMXBMI": bmi, "BMXWAIST": 40 + 2.2 * bmi + rng.normal(0, 6, n)}),
         "bpxo": pd.DataFrame({"SEQN": seqn, **{f"BPXOSY{i}": sbp + rng.normal(0, 4, n) for i in (1, 2, 3)},
                               **{f"BPXODI{i}": 0.55 * sbp + 5 + rng.normal(0, 5, n) for i in (1, 2, 3)}}),
-        "diq": pd.DataFrame({"SEQN": seqn, "DIQ010": np.where(has_dm & aware, 1, 2),
+        "diq": pd.DataFrame({"SEQN": seqn,
+                             "DIQ010": np.where(has_dm & aware, 1, np.where(rng.random(n) < .03, 3, 2)),
                              "DIQ160": yn(0.12)}),
         "kiq": pd.DataFrame({"SEQN": seqn, "KIQ022": yn(0.03)}),
         "bpq": pd.DataFrame({"SEQN": seqn, "BPQ020": np.where(htn_latent > 0.5, 1, 2),

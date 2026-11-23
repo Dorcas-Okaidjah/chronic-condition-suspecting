@@ -29,25 +29,41 @@ def make_models() -> dict[str, Pipeline | HistGradientBoostingClassifier]:
     }
 
 
+def fit_model(name: str, X: pd.DataFrame, y: np.ndarray, w: np.ndarray | None):
+    """Fit with NHANES survey weights (normalized to mean 1).
+
+    NHANES oversamples older, Black, Hispanic, Asian and low-income adults.  Fitting
+    without weights learns the *sample's* risk, not the population's: in v1 this made
+    diabetes predictions ~1.6x too high (O/E 0.64), worst for NH White adults (O/E 0.51).
+    """
+    m = make_models()[name]
+    if w is None:
+        return m.fit(X, y)
+    sw = w / w.mean()
+    key = "lr__sample_weight" if name == "logistic" else "sample_weight"
+    return m.fit(X, y, **{key: sw})
+
+
 def cross_val_auc(model_name: str, X: pd.DataFrame, y: np.ndarray, w: np.ndarray, k: int = 5) -> float:
     """Survey-weighted out-of-fold AUROC within the training cycle."""
     oof = np.zeros(len(y))
     skf = StratifiedKFold(n_splits=k, shuffle=True, random_state=C.RANDOM_STATE)
     for tr, va in skf.split(X, y):
-        m = make_models()[model_name]
-        m.fit(X.iloc[tr], y[tr])
+        m = fit_model(model_name, X.iloc[tr], y[tr], w[tr])
         oof[va] = m.predict_proba(X.iloc[va])[:, 1]
     return float(roc_auc_score(y, oof, sample_weight=w))
 
 
 def select_and_fit(X: pd.DataFrame, y: np.ndarray, w: np.ndarray):
-    """Pick a model by training-cycle CV only (the test cycle is never peeked at)."""
+    """Pick a model by training-cycle CV only (the test cycle is never peeked at).
+
+    Also fits an unweighted logistic model as a diagnostic, to show the effect of
+    ignoring the survey design.  It is never selected.
+    """
     cv = {name: cross_val_auc(name, X, y, w) for name in make_models()}
     chosen = "gbm" if cv["gbm"] > cv["logistic"] + PARSIMONY_MARGIN else "logistic"
-    fitted = {}
-    for name, m in make_models().items():
-        m.fit(X, y)
-        fitted[name] = m
+    fitted = {name: fit_model(name, X, y, w) for name in make_models()}
+    fitted["logistic_unweighted (diagnostic)"] = fit_model("logistic", X, y, None)
     return chosen, fitted, cv
 
 
@@ -70,10 +86,12 @@ def reason_codes(lr_pipe: Pipeline, X: pd.DataFrame, top: int = 3) -> list[str]:
     out = []
     for r, row in enumerate(contrib):
         parts = []
-        for i in np.argsort(row)[::-1][:top]:
-            if row[i] <= 0:
-                continue
+        for i in np.argsort(row)[::-1]:
+            if len(parts) == top or row[i] <= 0:
+                break
             n = names[i]
+            if n.startswith("missing_"):   # never show "missing data" as a clinical reason
+                continue
             if n in X.columns and n not in binary and pd.notna(X.iloc[r][n]):
                 parts.append(f"{n}={X.iloc[r][n]:.0f}")
             else:

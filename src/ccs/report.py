@@ -143,6 +143,12 @@ def write_summary(results, forecasts, path: Path, synthetic: bool):
                  f"| {r['chosen_model']} | {t['auroc']:.3f} ({_ci(r['ci95'], 'auroc', pct=False)}) "
                  f"| {t['auprc']:.3f} | {t['obs_exp_ratio']:.2f} | {t['calibration_slope']:.2f} "
                  f"| {r['cv_auroc_train'][r['chosen_model']]:.3f} |")
+    L += ["", "Effect of survey weights on calibration (observed/expected on the test cycle; 1.00 = perfect):", ""]
+    for r in results:
+        u = r["test"].get("logistic_unweighted (diagnostic)")
+        if u:
+            L.append(f"- {r['task']}: unweighted training O/E {u['obs_exp_ratio']:.2f} -> "
+                     f"survey-weighted O/E {r['test'][r['chosen_model']]['obs_exp_ratio']:.2f}")
     L += ["", "Guideline AUROC on the same test patients:", ""]
     for r in results:
         for b, m in r["matched"].items():
@@ -166,6 +172,14 @@ def write_summary(results, forecasts, path: Path, synthetic: bool):
             L.append(f"| {r['task']} | {b} | {_pct(op['sensitivity'])} ({_ci(r['ci95'], f'sens@{b}')}) "
                      f"| {_pct(op['ppv'])} ({_ci(r['ci95'], f'ppv@{b}')}) "
                      f"| {op['number_needed_to_test']:.1f} | {op['lift']:.1f}x |")
+
+    for r in results:
+        if "hybrid_budgets" in r:
+            L += ["", f"## {r['task']}: hybrid (lab rule first, then model) vs. model alone", "",
+                  "| Flag top | Model sensitivity | Hybrid sensitivity | Hybrid minus model (95% CI) |", "|---|---|---|---|"]
+            for b, op in r["hybrid_budgets"].items():
+                L.append(f"| {b} | {_pct(r['budgets'][b]['sensitivity'])} | {_pct(op['sensitivity'])} "
+                         f"| {_ci(r['ci95'], f'hybrid_minus_model_sens@{b}')} |")
 
     L += ["", "## Impact forecast per 10,000-adult panel (median [P10, P90])", "",
           f"Capacity: outreach testing for {forecasts[0]['capacity']:.0%} of the panel. Guideline = test "

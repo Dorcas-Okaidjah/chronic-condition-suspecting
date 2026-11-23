@@ -89,6 +89,8 @@ Outputs in `reports/`: `summary.md` (all tables), `results.json`, `data_audit.cs
 - **Single-visit definitions.** Clinical CKD requires abnormal results that persist for 3+ months, and diabetes is usually confirmed with a repeat test. A single UACR measurement overstates albuminuria, so treat `ckd_visit` and `alb_bmp` prevalence as upper bounds.
 - **"Undiagnosed" means self-reported "never told".** Some participants were told and forgot. Kidney-disease awareness questions are known to under-report.
 - **NHANES is not an EHR.** A real deployment would draw on claims, problem lists and lab history, which carry more signal and more missingness. The point here is a rigorous, reproducible evaluation design that transfers to that setting.
+- **Family history of diabetes (`MCQ300C`) is not in the 2021-2023 public files.** The schema-drift guard drops it from every model, and the ADA risk-test baseline loses that item (worth 1 point) on the test cycle. This slightly handicaps the ADA baseline. The USPSTF and CKD baselines are unaffected.
+- **Reason codes come from the logistic model.** When the gradient-boosted model does the ranking (`ckd_visit`), the reasons explain the patient's risk in interpretable terms but are not an exact decomposition of the GBM score.
 - **The financial values are illustrative.** RAF coefficients are CMS-HCC V28 community non-dual aged reference values (diabetes HCC 38 = 0.166; CKD stage 3 HCC 329 = 0.127). Albuminuria-only CKD (stages 1-2) has no payment HCC and is valued at $0. The $ per RAF point is an assumed range. Revenue is never the target: the target is diagnosing real disease so it can be treated.
 
 ## Repository layout

@@ -65,6 +65,15 @@ def run_task(task: Task, train_df: pd.DataFrame, test_df: pd.DataFrame,
     res["budgets"] = {f"{b:.0%}": operating_point(yte, flag_at_budget(p, wte, b), wte)
                       for b in C.ALERT_BUDGETS}
 
+    # --- hybrid: hard lab rule first, model ranks everyone else ------------------------
+    hybrid = None
+    if task.hybrid_rule is not None:
+        rule = task.hybrid_rule(te).fillna(False).to_numpy().astype(float)
+        hybrid = p + rule          # p is in [0,1], so rule-positive patients rank first
+        res["test"]["hybrid (lab rule first, then model)"] = discrimination(yte, hybrid, wte)
+        res["hybrid_budgets"] = {f"{b:.0%}": operating_point(yte, flag_at_budget(hybrid, wte, b), wte)
+                                 for b in C.ALERT_BUDGETS}
+
     # --- head-to-head at the SAME testing volume as each guideline ----------------------
     res["matched"] = {}
     for bname, (_, bflag) in base.items():
@@ -83,6 +92,9 @@ def run_task(task: Task, train_df: pd.DataFrame, test_df: pd.DataFrame,
         for b in C.ALERT_BUDGETS:
             op = operating_point(y, flag_at_budget(s, w, b), w)
             out[f"sens@{b:.0%}"], out[f"ppv@{b:.0%}"] = op["sensitivity"], op["ppv"]
+            if hybrid is not None:
+                hop = operating_point(y, flag_at_budget(hybrid[idx], w, b), w)
+                out[f"hybrid_minus_model_sens@{b:.0%}"] = hop["sensitivity"] - op["sensitivity"]
         for k in base:
             bop = operating_point(y, bflags[k][idx], w)
             mop = operating_point(y, flag_at_budget(s, w, bop["share_flagged"]), w)
@@ -127,6 +139,8 @@ def run_task(task: Task, train_df: pd.DataFrame, test_df: pd.DataFrame,
     out["flag_primary"] = flag
     for k, (s, f) in base.items():
         out[f"baseline_flag::{k}"] = f.to_numpy()
+    # Reason codes come from the logistic model; when GBM ranks, they are an
+    # interpretable approximation of why the patient scored high.
     out["reasons"] = reason_codes(fitted["logistic"], Xte)
     if task.condition == "ckd":
         out["ckd_stage3"] = te["lab_ckd_stage3"].to_numpy()
