@@ -69,7 +69,7 @@ Example of a physician-facing suspect line (`reports/suspect_examples_*.csv`):
 **Google Colab**
 
 ```python
-!git clone https://github.com/<your-username>/chronic-condition-suspecting.git
+!git clone https://github.com/Dorcas-Okaidjah/chronic-condition-suspecting.git
 %cd chronic-condition-suspecting
 !pip -q install -r requirements.txt
 !python -m pytest -q tests          # 7 fast tests on synthetic data
