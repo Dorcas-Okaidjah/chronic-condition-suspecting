@@ -1,0 +1,11 @@
+seqn,age,female,p,y,reasons,task
+140131,74.0,1.0,0.8178477876323633,1.0,dx_diabetes; sbp=207; age=74,ckd_visit
+140736,80.0,1.0,0.7984189491617912,1.0,dx_diabetes; age=80; dx_htn,ckd_visit
+135582,77.0,1.0,0.7786492705650156,1.0,dx_diabetes; sbp=202; age=77,ckd_visit
+131312,80.0,1.0,0.7427753858818416,1.0,dx_diabetes; age=80; dx_htn,ckd_visit
+139193,72.0,1.0,0.7388743672637135,1.0,dx_diabetes; age=72; dx_htn,ckd_visit
+135343,78.0,1.0,0.7215353238828451,1.0,dx_diabetes; age=78; sbp=184,ckd_visit
+139845,80.0,1.0,0.7137894134306291,0.0,dx_diabetes; age=80; sbp=158,ckd_visit
+136182,80.0,0.0,0.7061975680280883,0.0,dx_diabetes; age=80; cvd,ckd_visit
+140660,80.0,0.0,0.6989401544101901,0.0,dx_diabetes; age=80; dx_htn,ckd_visit
+134052,77.0,1.0,0.6983614651650241,1.0,dx_diabetes; age=77; dx_htn,ckd_visit

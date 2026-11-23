@@ -1,0 +1,11 @@
+seqn,age,female,p,y,reasons,task
+133728,72.0,0.0,0.6243296776046156,0.0,dx_borderline; age=72; bp_meds,dm_visit
+138228,72.0,0.0,0.6209215242356189,0.0,dx_borderline; waist=160; age=72,dm_visit
+135970,61.0,1.0,0.5919240156635005,1.0,dx_borderline; waist=122; dbp=98,dm_visit
+136302,48.0,1.0,0.5741514211803842,0.0,dx_borderline; waist=149; bmi=63,dm_visit
+141785,64.0,1.0,0.5700410138823245,0.0,dx_borderline; waist=126; bmi=52,dm_visit
+130972,37.0,1.0,0.5475279307241143,0.0,dx_borderline; waist=150; bmi=51,dm_visit
+131327,63.0,1.0,0.526449335957319,0.0,dx_prediabetes; bmi=60; dbp=117,dm_visit
+140345,71.0,1.0,0.5214445451168389,0.0,dx_borderline; waist=155; age=71,dm_visit
+137528,57.0,0.0,0.5167487833251976,1.0,dx_borderline; waist=142; dbp=114,dm_visit
+131254,53.0,1.0,0.5101195620052629,0.0,dx_borderline; waist=132; dbp=114,dm_visit

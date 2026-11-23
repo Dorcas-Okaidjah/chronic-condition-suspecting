@@ -4,7 +4,7 @@
 
 This project builds and evaluates "suspecting" models of the kind a PCP-facing clinical assistant would use. It uses nationally representative, lab-confirmed data from NHANES. It compares the models against the screening guidelines clinics already follow. Then it turns the results into an impact forecast for a 10,000-patient panel, with uncertainty.
 
-> Status: pipeline complete and tested; results on real NHANES data coming next.
+> **Headline (2021-2023 test cycle, survey-weighted):** With routine labs on file, the diabetes model reaches **AUROC 0.94** and finds **95% of undiagnosed cases** when testing the same number of adults as the ADA risk test, which finds 63%. With only visit data, it finds **86% vs. 68% for USPSTF** at the same testing volume. If a care team can test 20% of a 10,000-adult panel, the models add **~56 diabetes** and **~129 CKD** confirmed diagnoses over guideline-based selection, at roughly half the lab cost per diagnosis. Walkthrough: [`results.ipynb`](results.ipynb).
 
 ---
 
@@ -54,17 +54,34 @@ eGFR uses the race-free **CKD-EPI 2021** equation. **Race/ethnicity and income a
 
 ## Results
 
-*Results from the real NHANES run will be added here: headline tables plus gain, calibration, subgroup and impact charts.*
+Train: NHANES 2017-March 2020. Test: NHANES August 2021-August 2023. Full tables are in [`reports/summary.md`](reports/summary.md), and the narrated walkthrough is in [`results.ipynb`](results.ipynb).
 
-<!-- Figures (uncomment after the real run commits reports/figures/):
+| Task | Test n (cases) | Model AUROC (95% CI) | Best guideline AUROC | Cases found at the guideline's testing volume: guideline → model |
+|---|---|---|---|---|
+| Undiagnosed diabetes, visit data | 4,911 (152) | 0.816 (0.772-0.856) | 0.767 (ADA) | 68% → 86% (USPSTF volume; +6 to +31 pts) |
+| Undiagnosed diabetes, + routine labs | 4,665 (146) | **0.940** (0.916-0.962) | 0.765 (ADA) | 63% → 95% (ADA volume; +23 to +43 pts) |
+| Undiagnosed CKD, visit data | 5,118 (791) | 0.783 (0.756-0.807) | 0.751 | 80% → 83% (+0.1 to +5 pts) |
+| Albuminuria with normal eGFR | 4,778 (451) | 0.751 (0.712-0.789) | 0.707 | 74% → 77% (-1 to +7 pts) |
+
+**Impact forecast** (10,000-adult panel, testing capacity 20%, median [P10-P90]): **+56 [42-73]** extra confirmed diabetes diagnoses when routine labs are available, **+129 [102-159]** CKD and **+95 [75-118]** albuminuria, with lab cost per diagnosis about half the guideline strategy's. In a 65+ (Medicare Advantage-like) panel, documenting the extra confirmed diabetes and stage-3 CKD diagnoses is worth about **$230K and $160K per year** in CMS-HCC V28 risk adjustment, under the assumptions in `config.py`.
+
 | | |
 |---|---|
 | ![gain](reports/figures/gain_charts.png) | ![impact](reports/figures/impact.png) |
 | ![calibration](reports/figures/calibration.png) | ![subgroups](reports/figures/subgroups.png) |
--->
 
-Example of a physician-facing suspect line (`reports/suspect_examples_*.csv`):
-`p=0.31 · reasons: age=67; bmi=38; dx_htn`
+### What error analysis changed (v1 → v2)
+
+1. **Survey weights.** v1 trained without NHANES weights. Because NHANES oversamples some groups, the models learned the sample's diabetes rate (4.2%) instead of the population's (2.7%), and over-predicted risk by about 1.6× (observed/expected 0.64; 0.51 for NH White adults). Survey-weighted training moved O/E to 0.85 for diabetes and 1.02 for CKD.
+2. **Hidden signal in a missing value.** The top "reason" for diabetes flags was *prediabetes question unanswered*: people told they are "borderline" skip that question. v2 adds an explicit told-borderline feature, which is now the leading reason, and never shows missing-data indicators to physicians.
+3. **Rules vs. models.** At very small volumes (~1.4% of patients), the rule "random glucose ≥ 140 mg/dL" finds more cases than the model (42% vs. 34%). A rule-first hybrid adds nothing from 5% capacity upward, so the recommendation is to keep the rule as a hard alert and use the model for outreach prioritization.
+
+### Subgroup audit
+
+At a 20% flag rate, CKD sensitivity is lower for Hispanic adults (40% vs. 57% for NH White), and risk is under-predicted for NH Black and NH Asian adults (O/E ≈ 1.27). Diabetes sensitivity is lower for men than women (54% vs. 74%). These are the checks to repeat on local data before deployment.
+
+Example physician-facing suspect line (`reports/suspect_examples_dm_visit.csv`):
+`p=0.59 · reasons: dx_borderline; waist=122; dbp=98`
 
 ## Run it
 
@@ -74,7 +91,7 @@ Example of a physician-facing suspect line (`reports/suspect_examples_*.csv`):
 !git clone https://github.com/Dorcas-Okaidjah/chronic-condition-suspecting.git
 %cd chronic-condition-suspecting
 !pip -q install -r requirements.txt
-!python -m pytest -q tests          # 7 fast tests on synthetic data
+!python -m pytest -q tests          # 7 fast tests on synthetic data (no download)
 !python run_all.py                  # downloads NHANES (~30 MB) on first run, ~2-4 min
 ```
 
@@ -97,6 +114,7 @@ Outputs in `reports/`: `summary.md` (all tables), `results.json`, `data_audit.cs
 
 ```
 run_all.py            end-to-end pipeline
+results.ipynb         narrated results walkthrough (reads reports/)
 src/ccs/config.py     NHANES specs, thresholds, impact assumptions (one place to challenge)
 src/ccs/data.py       download, cache, harmonize; synthetic data generator for tests
 src/ccs/cohort.py     phenotypes and the four prediction tasks

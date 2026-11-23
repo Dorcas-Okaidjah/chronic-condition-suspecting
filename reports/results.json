@@ -1,0 +1,2702 @@
+{
+  "synthetic": false,
+  "results": [
+    {
+      "task": "dm_visit",
+      "title": "Undiagnosed diabetes - visit data only",
+      "lab": "hba1c",
+      "n_train": 6748,
+      "cases_train": 284,
+      "n_test": 4911,
+      "cases_test": 152,
+      "prevalence_train_weighted": 0.027107865459052072,
+      "prevalence_test_weighted": 0.025498214466072217,
+      "chosen_model": "logistic",
+      "features_used": [
+        "age",
+        "female",
+        "bmi",
+        "waist",
+        "sbp",
+        "dbp",
+        "dx_htn",
+        "bp_meds",
+        "dx_chol",
+        "cvd",
+        "smoke_now",
+        "smoke_ever",
+        "dx_prediabetes",
+        "dx_borderline"
+      ],
+      "features_dropped": [
+        "fam_dm"
+      ],
+      "cv_auroc_train": {
+        "logistic": 0.8297158427861628,
+        "gbm": 0.8029734688751229
+      },
+      "test": {
+        "logistic": {
+          "auroc": 0.8161991780552118,
+          "auprc": 0.12266162392860949,
+          "brier": 0.02420381403965535,
+          "obs_exp_ratio": 0.8496553827354835,
+          "calibration_slope": 0.8024265448240203
+        },
+        "gbm": {
+          "auroc": 0.8269185124622997,
+          "auprc": 0.09943300364580751,
+          "brier": 0.025360627611221365,
+          "obs_exp_ratio": 0.8888532113798386,
+          "calibration_slope": 0.6870153287746344
+        },
+        "logistic_unweighted (diagnostic)": {
+          "auroc": 0.8224807030066262,
+          "auprc": 0.118217998973614,
+          "brier": 0.024696386924173145,
+          "obs_exp_ratio": 0.6387940587841958,
+          "calibration_slope": 0.9119473509341514
+        },
+        "ADA risk test (>=5)": {
+          "auroc": 0.7669587134268306,
+          "auprc": 0.06653826598722201
+        },
+        "USPSTF age 35-70 & BMI>=25": {
+          "auroc": 0.7330891337260711,
+          "auprc": 0.0581125664259397
+        }
+      },
+      "budgets": {
+        "5%": {
+          "share_flagged": 0.05003984746167158,
+          "sensitivity": 0.3091908719616081,
+          "ppv": 0.15755074334044744,
+          "number_needed_to_test": 6.347161421124654,
+          "lift": 6.178893175052849
+        },
+        "10%": {
+          "share_flagged": 0.10024682029919305,
+          "sensitivity": 0.43514305808995446,
+          "ppv": 0.1106805281752113,
+          "number_needed_to_test": 9.035012901428908,
+          "lift": 4.340716810680301
+        },
+        "20%": {
+          "share_flagged": 0.20005610450665645,
+          "sensitivity": 0.6295670538333177,
+          "ppv": 0.08024166920075684,
+          "number_needed_to_test": 12.462352914146107,
+          "lift": 3.146952478085317
+        },
+        "30%": {
+          "share_flagged": 0.30013545228292265,
+          "sensitivity": 0.7742134160662575,
+          "ppv": 0.06577383503085442,
+          "number_needed_to_test": 15.203614013549632,
+          "lift": 2.5795467019219216
+        }
+      },
+      "matched": {
+        "ADA risk test (>=5)": {
+          "baseline": {
+            "share_flagged": 0.2705141525455751,
+            "sensitivity": 0.6281215653371234,
+            "ppv": 0.059205694907340047,
+            "number_needed_to_test": 16.890267086047235,
+            "lift": 2.321954542586455
+          },
+          "model": {
+            "share_flagged": 0.27058635863553604,
+            "sensitivity": 0.7073345225967954,
+            "ppv": 0.06665438511895944,
+            "number_needed_to_test": 15.002763857400824,
+            "lift": 2.614080496014707
+          }
+        },
+        "USPSTF age 35-70 & BMI>=25": {
+          "baseline": {
+            "share_flagged": 0.4350024498426759,
+            "sensitivity": 0.6790279325537992,
+            "ppv": 0.039802074353770235,
+            "number_needed_to_test": 25.12431867524702,
+            "lift": 1.5609749618637279
+          },
+          "model": {
+            "share_flagged": 0.4351240987467744,
+            "sensitivity": 0.8618753433584065,
+            "ppv": 0.05050578079050878,
+            "number_needed_to_test": 19.799713703028694,
+            "lift": 1.980757549031972
+          }
+        }
+      },
+      "ci95": {
+        "auroc": [
+          0.7720243473413302,
+          0.85582193315893
+        ],
+        "sens@5%": [
+          0.216406714757565,
+          0.3842190188947058
+        ],
+        "ppv@5%": [
+          0.10342009962465197,
+          0.20416370846037074
+        ],
+        "sens@10%": [
+          0.33963298033233014,
+          0.5326667072525835
+        ],
+        "ppv@10%": [
+          0.08111239905767471,
+          0.1433227265841939
+        ],
+        "sens@20%": [
+          0.5331816451777244,
+          0.7297177127575505
+        ],
+        "ppv@20%": [
+          0.06285950934633261,
+          0.0996719265734201
+        ],
+        "sens@30%": [
+          0.68920012558885,
+          0.8552317171180823
+        ],
+        "ppv@30%": [
+          0.0521388060981077,
+          0.08145359169730076
+        ],
+        "dsens|ADA risk test (>=5)": [
+          -0.02428434238048977,
+          0.20041437822454225
+        ],
+        "dppv|ADA risk test (>=5)": [
+          -0.002204810547965485,
+          0.02001726680714604
+        ],
+        "dauroc|ADA risk test (>=5)": [
+          0.008738300685342554,
+          0.09296356833878802
+        ],
+        "dsens|USPSTF age 35-70 & BMI>=25": [
+          0.058920746420039034,
+          0.3123142595376913
+        ],
+        "dppv|USPSTF age 35-70 & BMI>=25": [
+          0.0032473268887655,
+          0.018300007001830876
+        ],
+        "dauroc|USPSTF age 35-70 & BMI>=25": [
+          0.030155638436609625,
+          0.13461692695891786
+        ]
+      },
+      "subgroups": [
+        {
+          "group": "sex",
+          "level": "Female",
+          "n": 2727,
+          "cases": 76,
+          "prevalence": 0.021492588762957083,
+          "share_flagged": 0.21510514057864588,
+          "sensitivity": 0.7411568112543734,
+          "ppv": 0.07405391851772512,
+          "number_needed_to_test": 13.503674349935253,
+          "lift": 3.445556016284021,
+          "obs_exp_ratio": 0.6855224770127227,
+          "small_sample": false
+        },
+        {
+          "group": "sex",
+          "level": "Male",
+          "n": 2184,
+          "cases": 76,
+          "prevalence": 0.029770035680472724,
+          "share_flagged": 0.1840069785240147,
+          "sensitivity": 0.5436505867525013,
+          "ppv": 0.08795588892961285,
+          "number_needed_to_test": 11.369335381287033,
+          "lift": 2.9545106990686745,
+          "obs_exp_ratio": 1.041681872147752,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "Hispanic",
+          "n": 812,
+          "cases": 33,
+          "prevalence": 0.032619652256854564,
+          "share_flagged": 0.19209545828451155,
+          "sensitivity": 0.6577349170643803,
+          "ppv": 0.11168970085723812,
+          "number_needed_to_test": 8.953377010814998,
+          "lift": 3.424000353460791,
+          "obs_exp_ratio": 1.2248721045600188,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "NH Asian",
+          "n": 277,
+          "cases": 12,
+          "prevalence": 0.03269153507859607,
+          "share_flagged": 0.1534718960923662,
+          "sensitivity": 0.5788500844804484,
+          "ppv": 0.12330269139733487,
+          "number_needed_to_test": 8.110123053012407,
+          "lift": 3.7717008730515102,
+          "obs_exp_ratio": 1.4298511399609806,
+          "small_sample": true
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "NH Black",
+          "n": 541,
+          "cases": 29,
+          "prevalence": 0.047644607642652624,
+          "share_flagged": 0.26844620504193456,
+          "sensitivity": 0.5385292313172801,
+          "ppv": 0.09557972304433597,
+          "number_needed_to_test": 10.462470157358965,
+          "lift": 2.0060973901015116,
+          "obs_exp_ratio": 1.1453057728567426,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "NH White",
+          "n": 2985,
+          "cases": 74,
+          "prevalence": 0.020791849438985183,
+          "share_flagged": 0.2006940049951995,
+          "sensitivity": 0.6478214857894303,
+          "ppv": 0.06711414621575615,
+          "number_needed_to_test": 14.899988398649011,
+          "lift": 3.227906512727801,
+          "obs_exp_ratio": 0.6945956431288476,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "Other/Multi",
+          "n": 296,
+          "cases": 4,
+          "prevalence": 0.00948087992718505,
+          "share_flagged": 0.15115534102717654,
+          "sensitivity": 0.8909994226144553,
+          "ppv": 0.05588594146653457,
+          "number_needed_to_test": 17.893587792536636,
+          "lift": 5.894594372647809,
+          "obs_exp_ratio": 0.32889030892896687,
+          "small_sample": true
+        },
+        {
+          "group": "age",
+          "level": "20-44",
+          "n": 1783,
+          "cases": 25,
+          "prevalence": 0.0120235478552118,
+          "share_flagged": 0.06986959360327104,
+          "sensitivity": 0.3822839842052388,
+          "ppv": 0.06578555193081205,
+          "number_needed_to_test": 15.200906135920537,
+          "lift": 5.471392697314067,
+          "obs_exp_ratio": 1.0015821319855471,
+          "small_sample": false
+        },
+        {
+          "group": "age",
+          "level": "45-64",
+          "n": 1633,
+          "cases": 59,
+          "prevalence": 0.03410369513769558,
+          "share_flagged": 0.2673177324058063,
+          "sensitivity": 0.6664875668389878,
+          "ppv": 0.08502873560978794,
+          "number_needed_to_test": 11.760729979441052,
+          "lift": 2.493241136084511,
+          "obs_exp_ratio": 0.8330267886969345,
+          "small_sample": false
+        },
+        {
+          "group": "age",
+          "level": "65+",
+          "n": 1495,
+          "cases": 68,
+          "prevalence": 0.04374917782937937,
+          "share_flagged": 0.4015055759236239,
+          "sensitivity": 0.7447425403570888,
+          "ppv": 0.0811492437190558,
+          "number_needed_to_test": 12.322973747753807,
+          "lift": 1.8548747141154442,
+          "obs_exp_ratio": 0.7911413666618292,
+          "small_sample": false
+        },
+        {
+          "group": "income",
+          "level": "PIR<1.3 (low income)",
+          "n": 869,
+          "cases": 29,
+          "prevalence": 0.024500784687421097,
+          "share_flagged": 0.18881370217044458,
+          "sensitivity": 0.5372008549116495,
+          "ppv": 0.0697080896608208,
+          "number_needed_to_test": 14.345537295107466,
+          "lift": 2.8451370252075847,
+          "obs_exp_ratio": 0.8381386706949988,
+          "small_sample": false
+        },
+        {
+          "group": "income",
+          "level": "PIR>=1.3",
+          "n": 3417,
+          "cases": 105,
+          "prevalence": 0.026043942542833383,
+          "share_flagged": 0.19906791035784951,
+          "sensitivity": 0.6354993706555516,
+          "ppv": 0.08314202457647558,
+          "number_needed_to_test": 12.027611849651091,
+          "lift": 3.1923747504716453,
+          "obs_exp_ratio": 0.870360000960695,
+          "small_sample": false
+        },
+        {
+          "group": "income",
+          "level": "Unknown",
+          "n": 625,
+          "cases": 18,
+          "prevalence": 0.023807243388689423,
+          "share_flagged": 0.2186170519633643,
+          "sensitivity": 0.7082779320815745,
+          "ppv": 0.07713096926551469,
+          "number_needed_to_test": 12.96496089084026,
+          "lift": 3.239811010717806,
+          "obs_exp_ratio": 0.7583946503244291,
+          "small_sample": true
+        }
+      ],
+      "coefficients": [
+        {
+          "feature": "dx_prediabetes",
+          "coef_per_sd": 0.5691837241258472,
+          "odds_ratio_per_sd": 1.7668242466440733
+        },
+        {
+          "feature": "age",
+          "coef_per_sd": 0.4121904965758836,
+          "odds_ratio_per_sd": 1.510122082015906
+        },
+        {
+          "feature": "waist",
+          "coef_per_sd": 0.32693954191814395,
+          "odds_ratio_per_sd": 1.38671763635753
+        },
+        {
+          "feature": "dx_borderline",
+          "coef_per_sd": 0.26175106607316617,
+          "odds_ratio_per_sd": 1.2992030864454045
+        },
+        {
+          "feature": "missing_dx_prediabetes",
+          "coef_per_sd": 0.22400154033429326,
+          "odds_ratio_per_sd": 1.251072946497441
+        },
+        {
+          "feature": "dbp",
+          "coef_per_sd": 0.1725337758031676,
+          "odds_ratio_per_sd": 1.1883119561279119
+        },
+        {
+          "feature": "sbp",
+          "coef_per_sd": 0.17145619479312096,
+          "odds_ratio_per_sd": 1.1870321434047617
+        },
+        {
+          "feature": "bmi",
+          "coef_per_sd": 0.1657432997181229,
+          "odds_ratio_per_sd": 1.1802700871689118
+        },
+        {
+          "feature": "bp_meds",
+          "coef_per_sd": 0.15578594765215592,
+          "odds_ratio_per_sd": 1.1685760398718432
+        },
+        {
+          "feature": "dx_htn",
+          "coef_per_sd": 0.12212757560635487,
+          "odds_ratio_per_sd": 1.1298982400389526
+        },
+        {
+          "feature": "missing_bmi",
+          "coef_per_sd": 0.10447595718118569,
+          "odds_ratio_per_sd": 1.1101287029220903
+        },
+        {
+          "feature": "smoke_now",
+          "coef_per_sd": 0.06764532614299466,
+          "odds_ratio_per_sd": 1.0699857452009762
+        },
+        {
+          "feature": "female",
+          "coef_per_sd": 0.06250540794569115,
+          "odds_ratio_per_sd": 1.0645002156616479
+        },
+        {
+          "feature": "missing_waist",
+          "coef_per_sd": 0.055927633184137376,
+          "odds_ratio_per_sd": 1.057521151529005
+        },
+        {
+          "feature": "cvd",
+          "coef_per_sd": 0.05325816355090008,
+          "odds_ratio_per_sd": 1.0547018955617726
+        },
+        {
+          "feature": "missing_sbp",
+          "coef_per_sd": 0.019185539837407225,
+          "odds_ratio_per_sd": 1.019370764958546
+        },
+        {
+          "feature": "missing_dbp",
+          "coef_per_sd": 0.019185539837407225,
+          "odds_ratio_per_sd": 1.019370764958546
+        },
+        {
+          "feature": "missing_cvd",
+          "coef_per_sd": -0.016709719467824638,
+          "odds_ratio_per_sd": 0.9834291135321122
+        },
+        {
+          "feature": "missing_smoke_now",
+          "coef_per_sd": -0.02065763344266117,
+          "odds_ratio_per_sd": 0.9795542737912968
+        },
+        {
+          "feature": "missing_smoke_ever",
+          "coef_per_sd": -0.02065763344266117,
+          "odds_ratio_per_sd": 0.9795542737912968
+        },
+        {
+          "feature": "missing_dx_chol",
+          "coef_per_sd": -0.04909785584210736,
+          "odds_ratio_per_sd": 0.9520879577710025
+        },
+        {
+          "feature": "missing_dx_htn",
+          "coef_per_sd": -0.0582693428867085,
+          "odds_ratio_per_sd": 0.943395816261662
+        },
+        {
+          "feature": "dx_chol",
+          "coef_per_sd": -0.21354056448735134,
+          "odds_ratio_per_sd": 0.8077193947628394
+        },
+        {
+          "feature": "smoke_ever",
+          "coef_per_sd": -0.2487619098276464,
+          "odds_ratio_per_sd": 0.7797656058126784
+        }
+      ]
+    },
+    {
+      "task": "dm_bmp",
+      "title": "Undiagnosed diabetes - visit + BMP on file",
+      "lab": "hba1c",
+      "n_train": 6576,
+      "cases_train": 273,
+      "n_test": 4665,
+      "cases_test": 146,
+      "prevalence_train_weighted": 0.02665535657228628,
+      "prevalence_test_weighted": 0.02571987813946974,
+      "chosen_model": "logistic",
+      "features_used": [
+        "age",
+        "female",
+        "bmi",
+        "waist",
+        "sbp",
+        "dbp",
+        "dx_htn",
+        "bp_meds",
+        "dx_chol",
+        "cvd",
+        "smoke_now",
+        "smoke_ever",
+        "dx_prediabetes",
+        "dx_borderline",
+        "glucose_serum"
+      ],
+      "features_dropped": [
+        "fam_dm"
+      ],
+      "cv_auroc_train": {
+        "logistic": 0.9083041493684958,
+        "gbm": 0.915463168395674
+      },
+      "test": {
+        "logistic": {
+          "auroc": 0.9402838769724856,
+          "auprc": 0.5500267120568639,
+          "brier": 0.017055609355296566,
+          "obs_exp_ratio": 0.7787142492902581,
+          "calibration_slope": 0.9630565962335337
+        },
+        "gbm": {
+          "auroc": 0.9397020276645794,
+          "auprc": 0.5431455400277521,
+          "brier": 0.01740511610836495,
+          "obs_exp_ratio": 0.7704451817591513,
+          "calibration_slope": 0.8739365684397022
+        },
+        "logistic_unweighted (diagnostic)": {
+          "auroc": 0.9439487037933144,
+          "auprc": 0.554118932129307,
+          "brier": 0.017048201242779434,
+          "obs_exp_ratio": 0.6437899414205713,
+          "calibration_slope": 1.0733072774631696
+        },
+        "ADA risk test (>=5)": {
+          "auroc": 0.7645517758665213,
+          "auprc": 0.06633224553146348
+        },
+        "USPSTF age 35-70 & BMI>=25": {
+          "auroc": 0.7291977660897372,
+          "auprc": 0.056583210952408966
+        },
+        "Random glucose >=140 mg/dL": {
+          "auroc": 0.921274309804482,
+          "auprc": 0.5682990133258005
+        },
+        "hybrid (lab rule first, then model)": {
+          "auroc": 0.9410436357039272,
+          "auprc": 0.5762285179514176
+        }
+      },
+      "budgets": {
+        "5%": {
+          "share_flagged": 0.0502009448027408,
+          "sensitivity": 0.6850479833223456,
+          "ppv": 0.3509764750439173,
+          "number_needed_to_test": 2.8491938095704876,
+          "lift": 13.64611733930841
+        },
+        "10%": {
+          "share_flagged": 0.10064422307936727,
+          "sensitivity": 0.8030467854398416,
+          "ppv": 0.2052205763019089,
+          "number_needed_to_test": 4.872805729425769,
+          "lift": 7.97906487694346
+        },
+        "20%": {
+          "share_flagged": 0.20012353634368207,
+          "sensitivity": 0.8965223282628404,
+          "ppv": 0.11522105522178328,
+          "number_needed_to_test": 8.678969291464567,
+          "lift": 4.479844523250869
+        },
+        "30%": {
+          "share_flagged": 0.3000188447737193,
+          "sensitivity": 0.9695421907268138,
+          "ppv": 0.08311646895172813,
+          "number_needed_to_test": 12.031309951109375,
+          "lift": 3.2316043062497077
+        }
+      },
+      "hybrid_budgets": {
+        "5%": {
+          "share_flagged": 0.050074082594238685,
+          "sensitivity": 0.6954692616635945,
+          "ppv": 0.3572184198496468,
+          "number_needed_to_test": 2.7994077136920876,
+          "lift": 13.888806856415824
+        },
+        "10%": {
+          "share_flagged": 0.10064422307936727,
+          "sensitivity": 0.8030467854398416,
+          "ppv": 0.2052205763019089,
+          "number_needed_to_test": 4.872805729425769,
+          "lift": 7.97906487694346
+        },
+        "20%": {
+          "share_flagged": 0.20012353634368207,
+          "sensitivity": 0.8965223282628404,
+          "ppv": 0.11522105522178328,
+          "number_needed_to_test": 8.678969291464567,
+          "lift": 4.479844523250869
+        },
+        "30%": {
+          "share_flagged": 0.3000188447737193,
+          "sensitivity": 0.9695421907268138,
+          "ppv": 0.08311646895172813,
+          "number_needed_to_test": 12.031309951109375,
+          "lift": 3.2316043062497077
+        }
+      },
+      "matched": {
+        "ADA risk test (>=5)": {
+          "baseline": {
+            "share_flagged": 0.27101377582752345,
+            "sensitivity": 0.6256176897156555,
+            "ppv": 0.0593726672832441,
+            "number_needed_to_test": 16.8427669794484,
+            "lift": 2.3084350151772597
+          },
+          "model": {
+            "share_flagged": 0.27117153898692253,
+            "sensitivity": 0.9514744797643409,
+            "ppv": 0.09024474973951593,
+            "number_needed_to_test": 11.08097704172728,
+            "lift": 3.5087549501654243
+          }
+        },
+        "USPSTF age 35-70 & BMI>=25": {
+          "baseline": {
+            "share_flagged": 0.43881555030554426,
+            "sensitivity": 0.6786322229241326,
+            "ppv": 0.039776024489042876,
+            "number_needed_to_test": 25.140772936608347,
+            "lift": 1.5465090570550786
+          },
+          "model": {
+            "share_flagged": 0.4391541528565502,
+            "sensitivity": 0.9761905304510937,
+            "ppv": 0.05717241046404912,
+            "number_needed_to_test": 17.490953973837,
+            "lift": 2.2228880772305177
+          }
+        },
+        "Random glucose >=140 mg/dL": {
+          "baseline": {
+            "share_flagged": 0.014358302146406198,
+            "sensitivity": 0.41864408660857555,
+            "ppv": 0.7499128226715314,
+            "number_needed_to_test": 1.3334883332672511,
+            "lift": 29.156935293589697
+          },
+          "model": {
+            "share_flagged": 0.014385583450534317,
+            "sensitivity": 0.3354314466767253,
+            "ppv": 0.5997153999583507,
+            "number_needed_to_test": 1.6674575975028296,
+            "lift": 23.317194455833253
+          }
+        }
+      },
+      "ci95": {
+        "auroc": [
+          0.9161022878636753,
+          0.9621208904772398
+        ],
+        "sens@5%": [
+          0.5900739460861417,
+          0.7559412912624651
+        ],
+        "ppv@5%": [
+          0.2670942944055958,
+          0.4282706702497732
+        ],
+        "hybrid_minus_model_sens@5%": [
+          -0.032230919177655436,
+          0.037707312648372605
+        ],
+        "sens@10%": [
+          0.7321723999597467,
+          0.8725797785237734
+        ],
+        "ppv@10%": [
+          0.15970523889403507,
+          0.2570610386014178
+        ],
+        "hybrid_minus_model_sens@10%": [
+          0.0,
+          0.0
+        ],
+        "sens@20%": [
+          0.846454617151111,
+          0.9596513752462293
+        ],
+        "ppv@20%": [
+          0.09336347243747127,
+          0.1433892957115158
+        ],
+        "hybrid_minus_model_sens@20%": [
+          0.0,
+          0.0
+        ],
+        "sens@30%": [
+          0.9385001226959689,
+          0.9950146235452646
+        ],
+        "ppv@30%": [
+          0.06803072812146764,
+          0.10217480791546639
+        ],
+        "hybrid_minus_model_sens@30%": [
+          0.0,
+          0.0
+        ],
+        "dsens|ADA risk test (>=5)": [
+          0.22689294144412495,
+          0.430498073643376
+        ],
+        "dppv|ADA risk test (>=5)": [
+          0.01844372905352827,
+          0.04449106384134279
+        ],
+        "dauroc|ADA risk test (>=5)": [
+          0.1322239065796058,
+          0.2188304644472639
+        ],
+        "dsens|USPSTF age 35-70 & BMI>=25": [
+          0.20943560676045098,
+          0.3938120453553513
+        ],
+        "dppv|USPSTF age 35-70 & BMI>=25": [
+          0.011384713118088061,
+          0.02413417216875053
+        ],
+        "dauroc|USPSTF age 35-70 & BMI>=25": [
+          0.16565538690342604,
+          0.25379235988617566
+        ],
+        "dsens|Random glucose >=140 mg/dL": [
+          -0.1250326114807591,
+          -0.006687545562083466
+        ],
+        "dppv|Random glucose >=140 mg/dL": [
+          -0.25085242675991437,
+          -0.032132548322027346
+        ],
+        "dauroc|Random glucose >=140 mg/dL": [
+          -0.0032602812215014095,
+          0.048263558186167455
+        ]
+      },
+      "subgroups": [
+        {
+          "group": "sex",
+          "level": "Female",
+          "n": 2580,
+          "cases": 73,
+          "prevalence": 0.021756672981007905,
+          "share_flagged": 0.20134734205610405,
+          "sensitivity": 0.8826561016240099,
+          "ppv": 0.09537578177900106,
+          "number_needed_to_test": 10.484841972956394,
+          "lift": 4.383748464770217,
+          "obs_exp_ratio": 0.6807973287072848,
+          "small_sample": false
+        },
+        {
+          "group": "sex",
+          "level": "Male",
+          "n": 2085,
+          "cases": 73,
+          "prevalence": 0.0299424060963237,
+          "share_flagged": 0.19881965384761044,
+          "sensitivity": 0.907257031956796,
+          "ppv": 0.13663366754182793,
+          "number_needed_to_test": 7.318840356048176,
+          "lift": 4.563216032214715,
+          "obs_exp_ratio": 0.8762843349457513,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "Hispanic",
+          "n": 769,
+          "cases": 32,
+          "prevalence": 0.03172301319622056,
+          "share_flagged": 0.19370488772798183,
+          "sensitivity": 0.9209528340594694,
+          "ppv": 0.15082427320570357,
+          "number_needed_to_test": 6.630232513278134,
+          "lift": 4.754411955534936,
+          "obs_exp_ratio": 0.8693652591486132,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "NH Asian",
+          "n": 262,
+          "cases": 10,
+          "prevalence": 0.030327663476311856,
+          "share_flagged": 0.19165837201500624,
+          "sensitivity": 1.0,
+          "ppv": 0.15823813568622663,
+          "number_needed_to_test": 6.319589115881135,
+          "lift": 5.21761710425936,
+          "obs_exp_ratio": 0.9136828694059502,
+          "small_sample": true
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "NH Black",
+          "n": 503,
+          "cases": 26,
+          "prevalence": 0.047369339342748756,
+          "share_flagged": 0.25614825930775265,
+          "sensitivity": 0.8215712258052702,
+          "ppv": 0.15193265921299992,
+          "number_needed_to_test": 6.581863341166587,
+          "lift": 3.2074050708975657,
+          "obs_exp_ratio": 1.4257182449050338,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "NH White",
+          "n": 2861,
+          "cases": 74,
+          "prevalence": 0.02167716496435751,
+          "share_flagged": 0.19720644380865635,
+          "sensitivity": 0.9142445068197784,
+          "ppv": 0.10049483480022112,
+          "number_needed_to_test": 9.950760175763778,
+          "lift": 4.6359768431646335,
+          "obs_exp_ratio": 0.6728860009509416,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "Other/Multi",
+          "n": 270,
+          "cases": 4,
+          "prevalence": 0.010286976413758605,
+          "share_flagged": 0.16510951153911005,
+          "sensitivity": 0.497037373095154,
+          "ppv": 0.030967396645560592,
+          "number_needed_to_test": 32.29202672234825,
+          "lift": 3.0103497276558717,
+          "obs_exp_ratio": 0.3297628270547891,
+          "small_sample": true
+        },
+        {
+          "group": "age",
+          "level": "20-44",
+          "n": 1693,
+          "cases": 25,
+          "prevalence": 0.012640205565016691,
+          "share_flagged": 0.07097237603634966,
+          "sensitivity": 0.806565654724065,
+          "ppv": 0.14364963168448586,
+          "number_needed_to_test": 6.961382276262389,
+          "lift": 11.364501229477922,
+          "obs_exp_ratio": 0.85163358302304,
+          "small_sample": false
+        },
+        {
+          "group": "age",
+          "level": "45-64",
+          "n": 1554,
+          "cases": 55,
+          "prevalence": 0.03306075821323647,
+          "share_flagged": 0.26282422163829827,
+          "sensitivity": 0.9202302430787037,
+          "ppv": 0.115756110214233,
+          "number_needed_to_test": 8.63885282728724,
+          "lift": 3.5013144425673803,
+          "obs_exp_ratio": 0.7831142590011836,
+          "small_sample": false
+        },
+        {
+          "group": "age",
+          "level": "65+",
+          "n": 1418,
+          "cases": 66,
+          "prevalence": 0.04510354800698518,
+          "share_flagged": 0.4072354035884659,
+          "sensitivity": 0.9286977839563522,
+          "ppv": 0.10285835836853174,
+          "number_needed_to_test": 9.722107331492643,
+          "lift": 2.2804937286220164,
+          "obs_exp_ratio": 0.7320094841163687,
+          "small_sample": false
+        },
+        {
+          "group": "income",
+          "level": "PIR<1.3 (low income)",
+          "n": 800,
+          "cases": 28,
+          "prevalence": 0.025534913491378132,
+          "share_flagged": 0.1783431187019675,
+          "sensitivity": 0.8327928821355107,
+          "ppv": 0.11923809764200974,
+          "number_needed_to_test": 8.386581300569844,
+          "lift": 4.669610401549647,
+          "obs_exp_ratio": 1.004884992058054,
+          "small_sample": false
+        },
+        {
+          "group": "income",
+          "level": "PIR>=1.3",
+          "n": 3272,
+          "cases": 101,
+          "prevalence": 0.0261523354258695,
+          "share_flagged": 0.2033250091038502,
+          "sensitivity": 0.8924104804015867,
+          "ppv": 0.11478478876695002,
+          "number_needed_to_test": 8.711955745550233,
+          "lift": 4.3890836859413564,
+          "obs_exp_ratio": 0.7612515244877698,
+          "small_sample": false
+        },
+        {
+          "group": "income",
+          "level": "Unknown",
+          "n": 593,
+          "cases": 17,
+          "prevalence": 0.023669325459849185,
+          "share_flagged": 0.2085996060481124,
+          "sensitivity": 1.0,
+          "ppv": 0.11346773806653297,
+          "number_needed_to_test": 8.813077770296609,
+          "lift": 4.793872907743437,
+          "obs_exp_ratio": 0.6779267524547042,
+          "small_sample": true
+        }
+      ],
+      "coefficients": [
+        {
+          "feature": "glucose_serum",
+          "coef_per_sd": 1.54731807660502,
+          "odds_ratio_per_sd": 4.698851309472478
+        },
+        {
+          "feature": "dx_prediabetes",
+          "coef_per_sd": 0.40907615630776756,
+          "odds_ratio_per_sd": 1.5054263638335827
+        },
+        {
+          "feature": "age",
+          "coef_per_sd": 0.36551315250527533,
+          "odds_ratio_per_sd": 1.4412534012158602
+        },
+        {
+          "feature": "dx_borderline",
+          "coef_per_sd": 0.24356893555139572,
+          "odds_ratio_per_sd": 1.2757942623903216
+        },
+        {
+          "feature": "bp_meds",
+          "coef_per_sd": 0.21450326290539365,
+          "odds_ratio_per_sd": 1.239246164510886
+        },
+        {
+          "feature": "bmi",
+          "coef_per_sd": 0.18879357142338116,
+          "odds_ratio_per_sd": 1.2077916040457903
+        },
+        {
+          "feature": "missing_bmi",
+          "coef_per_sd": 0.17395016721986684,
+          "odds_ratio_per_sd": 1.1899962635206165
+        },
+        {
+          "feature": "missing_dx_prediabetes",
+          "coef_per_sd": 0.16605377346206035,
+          "odds_ratio_per_sd": 1.1806365869330655
+        },
+        {
+          "feature": "waist",
+          "coef_per_sd": 0.16572819020428856,
+          "odds_ratio_per_sd": 1.180252253996427
+        },
+        {
+          "feature": "smoke_now",
+          "coef_per_sd": 0.11785771050485402,
+          "odds_ratio_per_sd": 1.1250840123412948
+        },
+        {
+          "feature": "dx_htn",
+          "coef_per_sd": 0.09855529381816838,
+          "odds_ratio_per_sd": 1.1035754236061912
+        },
+        {
+          "feature": "dbp",
+          "coef_per_sd": 0.08905486618125594,
+          "odds_ratio_per_sd": 1.0931406311330267
+        },
+        {
+          "feature": "female",
+          "coef_per_sd": 0.08019144168720656,
+          "odds_ratio_per_sd": 1.083494473831382
+        },
+        {
+          "feature": "sbp",
+          "coef_per_sd": 0.06940972333576104,
+          "odds_ratio_per_sd": 1.0718752915110163
+        },
+        {
+          "feature": "cvd",
+          "coef_per_sd": 0.025226328003997704,
+          "odds_ratio_per_sd": 1.0255472043116654
+        },
+        {
+          "feature": "missing_smoke_ever",
+          "coef_per_sd": -0.015508719449798725,
+          "odds_ratio_per_sd": 0.9846109214488026
+        },
+        {
+          "feature": "missing_smoke_now",
+          "coef_per_sd": -0.015508719449798725,
+          "odds_ratio_per_sd": 0.9846109214488026
+        },
+        {
+          "feature": "missing_cvd",
+          "coef_per_sd": -0.018125272360255563,
+          "odds_ratio_per_sd": 0.9820380024339116
+        },
+        {
+          "feature": "missing_dx_chol",
+          "coef_per_sd": -0.046855365439298906,
+          "odds_ratio_per_sd": 0.9542254015818248
+        },
+        {
+          "feature": "missing_dbp",
+          "coef_per_sd": -0.048223131649008384,
+          "odds_ratio_per_sd": 0.952921136489289
+        },
+        {
+          "feature": "missing_sbp",
+          "coef_per_sd": -0.048223131649008384,
+          "odds_ratio_per_sd": 0.952921136489289
+        },
+        {
+          "feature": "missing_dx_htn",
+          "coef_per_sd": -0.057651295714667865,
+          "odds_ratio_per_sd": 0.9439790595953983
+        },
+        {
+          "feature": "missing_waist",
+          "coef_per_sd": -0.07822559632776938,
+          "odds_ratio_per_sd": 0.9247557815012564
+        },
+        {
+          "feature": "dx_chol",
+          "coef_per_sd": -0.14791788720798604,
+          "odds_ratio_per_sd": 0.8625019344763681
+        },
+        {
+          "feature": "smoke_ever",
+          "coef_per_sd": -0.39949014112435194,
+          "odds_ratio_per_sd": 0.6706619018023282
+        }
+      ]
+    },
+    {
+      "task": "ckd_visit",
+      "title": "Undiagnosed CKD - visit data only",
+      "lab": "uacr",
+      "n_train": 7363,
+      "cases_train": 1217,
+      "n_test": 5118,
+      "cases_test": 791,
+      "prevalence_train_weighted": 0.12669747624098787,
+      "prevalence_test_weighted": 0.12571291870264625,
+      "chosen_model": "logistic",
+      "features_used": [
+        "age",
+        "female",
+        "bmi",
+        "waist",
+        "sbp",
+        "dbp",
+        "dx_htn",
+        "bp_meds",
+        "dx_chol",
+        "cvd",
+        "smoke_now",
+        "smoke_ever",
+        "dx_diabetes",
+        "dx_prediabetes",
+        "dx_borderline"
+      ],
+      "features_dropped": [
+        "fam_dm"
+      ],
+      "cv_auroc_train": {
+        "logistic": 0.7495323238414773,
+        "gbm": 0.7565297678273714
+      },
+      "test": {
+        "logistic": {
+          "auroc": 0.7827567142877003,
+          "auprc": 0.3807703845842544,
+          "brier": 0.09357899948889692,
+          "obs_exp_ratio": 1.0228178721490533,
+          "calibration_slope": 1.1083055951311467
+        },
+        "gbm": {
+          "auroc": 0.7843814766306373,
+          "auprc": 0.3979049901398834,
+          "brier": 0.09179977570603991,
+          "obs_exp_ratio": 1.000140375118839,
+          "calibration_slope": 0.9674866601411755
+        },
+        "logistic_unweighted (diagnostic)": {
+          "auroc": 0.7857112406793771,
+          "auprc": 0.3998029718715508,
+          "brier": 0.09236213273213495,
+          "obs_exp_ratio": 0.9249411840539924,
+          "calibration_slope": 1.1236401550114568
+        },
+        "Guideline risk factor (any of DM/HTN/CVD/age>=60)": {
+          "auroc": 0.7514991307233909,
+          "auprc": 0.31775154150688084
+        }
+      },
+      "budgets": {
+        "5%": {
+          "share_flagged": 0.050102179468445716,
+          "sensitivity": 0.20700433756446313,
+          "ppv": 0.5194009469333728,
+          "number_needed_to_test": 1.9252949111936775,
+          "lift": 4.131643368824587
+        },
+        "10%": {
+          "share_flagged": 0.10002936538632848,
+          "sensitivity": 0.35169330830385115,
+          "ppv": 0.4419941294670002,
+          "number_needed_to_test": 2.262473488518723,
+          "lift": 3.5159006252369847
+        },
+        "20%": {
+          "share_flagged": 0.20003051650803955,
+          "sensitivity": 0.5465046726183558,
+          "ppv": 0.3434610812332047,
+          "number_needed_to_test": 2.9115380304792544,
+          "lift": 2.732106491343239
+        },
+        "30%": {
+          "share_flagged": 0.30000567761653174,
+          "sensitivity": 0.6834985891269563,
+          "ppv": 0.28640992147528477,
+          "number_needed_to_test": 3.491499159138917,
+          "lift": 2.2782855129848785
+        }
+      },
+      "matched": {
+        "Guideline risk factor (any of DM/HTN/CVD/age>=60)": {
+          "baseline": {
+            "share_flagged": 0.47264213761542584,
+            "sensitivity": 0.8017924593727728,
+            "ppv": 0.213260016912708,
+            "number_needed_to_test": 4.689111510336802,
+            "lift": 1.6964049448023744
+          },
+          "model": {
+            "share_flagged": 0.47264364305228107,
+            "sensitivity": 0.827061109836492,
+            "ppv": 0.2199802485262549,
+            "number_needed_to_test": 4.545862670396287,
+            "lift": 1.7498619139261486
+          }
+        }
+      },
+      "ci95": {
+        "auroc": [
+          0.7560439381046464,
+          0.8071447450189134
+        ],
+        "sens@5%": [
+          0.18374104073882364,
+          0.2332211475871706
+        ],
+        "ppv@5%": [
+          0.4569135377081738,
+          0.5854564555505127
+        ],
+        "sens@10%": [
+          0.3191638550096533,
+          0.38437703060001643
+        ],
+        "ppv@10%": [
+          0.39642286005949023,
+          0.48438684096812723
+        ],
+        "sens@20%": [
+          0.5051033284295345,
+          0.5868867585728951
+        ],
+        "ppv@20%": [
+          0.31036972724289863,
+          0.37450339525708354
+        ],
+        "sens@30%": [
+          0.6375404512164727,
+          0.7248114055892407
+        ],
+        "ppv@30%": [
+          0.2585713298645672,
+          0.31012167335427626
+        ],
+        "dsens|Guideline risk factor (any of DM/HTN/CVD/age>=60)": [
+          0.000559961280880511,
+          0.05306262626619561
+        ],
+        "dppv|Guideline risk factor (any of DM/HTN/CVD/age>=60)": [
+          3.422691046683013e-05,
+          0.014097200763186334
+        ],
+        "dauroc|Guideline risk factor (any of DM/HTN/CVD/age>=60)": [
+          0.02037052605467976,
+          0.04364547324666958
+        ]
+      },
+      "subgroups": [
+        {
+          "group": "sex",
+          "level": "Female",
+          "n": 2796,
+          "cases": 408,
+          "prevalence": 0.13029215589870777,
+          "share_flagged": 0.24629879461538381,
+          "sensitivity": 0.5815847022194046,
+          "ppv": 0.3076585283667533,
+          "number_needed_to_test": 3.25035683330033,
+          "lift": 2.3612973954159937,
+          "obs_exp_ratio": 0.9235832350326956,
+          "small_sample": false
+        },
+        {
+          "group": "sex",
+          "level": "Male",
+          "n": 2322,
+          "cases": 383,
+          "prevalence": 0.1209725138343733,
+          "share_flagged": 0.1521338120142642,
+          "sensitivity": 0.5073923315298791,
+          "ppv": 0.4034640625431651,
+          "number_needed_to_test": 2.4785354950740226,
+          "lift": 3.335171352192933,
+          "obs_exp_ratio": 1.1620232427842516,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "Hispanic",
+          "n": 875,
+          "cases": 106,
+          "prevalence": 0.09276394712934875,
+          "share_flagged": 0.15518069825770703,
+          "sensitivity": 0.4019154303812558,
+          "ppv": 0.24025708192419865,
+          "number_needed_to_test": 4.162208214596983,
+          "lift": 2.589983386424766,
+          "obs_exp_ratio": 0.8678354243780427,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "NH Asian",
+          "n": 285,
+          "cases": 41,
+          "prevalence": 0.13094144832641802,
+          "share_flagged": 0.13969995163679286,
+          "sensitivity": 0.4758809645988951,
+          "ppv": 0.4460455569631057,
+          "number_needed_to_test": 2.241923463622157,
+          "lift": 3.4064504605996024,
+          "obs_exp_ratio": 1.2607101968229146,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "NH Black",
+          "n": 587,
+          "cases": 134,
+          "prevalence": 0.18499027906831625,
+          "share_flagged": 0.27093451877887725,
+          "sensitivity": 0.5848467354288185,
+          "ppv": 0.3993251258156245,
+          "number_needed_to_test": 2.504225092166421,
+          "lift": 2.158627619931073,
+          "obs_exp_ratio": 1.2719225353461066,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "NH White",
+          "n": 3063,
+          "cases": 457,
+          "prevalence": 0.12264282088849557,
+          "share_flagged": 0.2078231059593931,
+          "sensitivity": 0.5738572525072982,
+          "ppv": 0.3386508536185977,
+          "number_needed_to_test": 2.952893782238153,
+          "lift": 2.761277432834755,
+          "obs_exp_ratio": 0.9752694206373265,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "Other/Multi",
+          "n": 308,
+          "cases": 53,
+          "prevalence": 0.1427679301741022,
+          "share_flagged": 0.18712212842170095,
+          "sensitivity": 0.5541139567964525,
+          "ppv": 0.42277042998425457,
+          "number_needed_to_test": 2.365349913515104,
+          "lift": 2.961242272467604,
+          "obs_exp_ratio": 1.1902682527654471,
+          "small_sample": false
+        },
+        {
+          "group": "age",
+          "level": "20-44",
+          "n": 1704,
+          "cases": 87,
+          "prevalence": 0.050479075141474455,
+          "share_flagged": 0.00990890857899432,
+          "sensitivity": 0.09399299628269965,
+          "ppv": 0.47882967980801305,
+          "number_needed_to_test": 2.0884252630307927,
+          "lift": 9.48570627465,
+          "obs_exp_ratio": 0.9837295745226488,
+          "small_sample": false
+        },
+        {
+          "group": "age",
+          "level": "45-64",
+          "n": 1781,
+          "cases": 225,
+          "prevalence": 0.11722470757467751,
+          "share_flagged": 0.20275192608703252,
+          "sensitivity": 0.45361129344786366,
+          "ppv": 0.2622636058420061,
+          "number_needed_to_test": 3.8129575653071135,
+          "lift": 2.2372724254819074,
+          "obs_exp_ratio": 0.8651001384020359,
+          "small_sample": false
+        },
+        {
+          "group": "age",
+          "level": "65+",
+          "n": 1633,
+          "cases": 479,
+          "prevalence": 0.2977480754213327,
+          "share_flagged": 0.5961906308061008,
+          "sensitivity": 0.7664958195570261,
+          "ppv": 0.38280147875357423,
+          "number_needed_to_test": 2.612320107163805,
+          "lift": 1.2856555939509786,
+          "obs_exp_ratio": 1.1739919898375173,
+          "small_sample": false
+        },
+        {
+          "group": "income",
+          "level": "PIR<1.3 (low income)",
+          "n": 896,
+          "cases": 156,
+          "prevalence": 0.13784016242407526,
+          "share_flagged": 0.21095410814248947,
+          "sensitivity": 0.5774043307934222,
+          "ppv": 0.3772835117634727,
+          "number_needed_to_test": 2.6505266432817822,
+          "lift": 2.737108728896681,
+          "obs_exp_ratio": 1.0808534599042723,
+          "small_sample": false
+        },
+        {
+          "group": "income",
+          "level": "PIR>=1.3",
+          "n": 3575,
+          "cases": 512,
+          "prevalence": 0.1178486577674512,
+          "share_flagged": 0.19616461873934166,
+          "sensitivity": 0.5291046931127326,
+          "ppv": 0.3178670970459226,
+          "number_needed_to_test": 3.145968894841384,
+          "lift": 2.697248344339776,
+          "obs_exp_ratio": 0.9707414624775155,
+          "small_sample": false
+        },
+        {
+          "group": "income",
+          "level": "Unknown",
+          "n": 647,
+          "cases": 123,
+          "prevalence": 0.15304378437702562,
+          "share_flagged": 0.2076266158286464,
+          "sensitivity": 0.5846334141082217,
+          "ppv": 0.4309395007537283,
+          "number_needed_to_test": 2.3205113438219636,
+          "lift": 2.815792242121395,
+          "obs_exp_ratio": 1.2199872326676826,
+          "small_sample": false
+        }
+      ],
+      "coefficients": [
+        {
+          "feature": "age",
+          "coef_per_sd": 0.5260970722166791,
+          "odds_ratio_per_sd": 1.6923144214778247
+        },
+        {
+          "feature": "dx_diabetes",
+          "coef_per_sd": 0.48858929543189356,
+          "odds_ratio_per_sd": 1.6300151274697487
+        },
+        {
+          "feature": "dx_htn",
+          "coef_per_sd": 0.29211264280245025,
+          "odds_ratio_per_sd": 1.3392538664518272
+        },
+        {
+          "feature": "sbp",
+          "coef_per_sd": 0.24411012030976606,
+          "odds_ratio_per_sd": 1.2764848896615641
+        },
+        {
+          "feature": "female",
+          "coef_per_sd": 0.20256464073596536,
+          "odds_ratio_per_sd": 1.2245392376811897
+        },
+        {
+          "feature": "dx_borderline",
+          "coef_per_sd": 0.18387148394905586,
+          "odds_ratio_per_sd": 1.2018613546955919
+        },
+        {
+          "feature": "missing_cvd",
+          "coef_per_sd": 0.1698924502989449,
+          "odds_ratio_per_sd": 1.185177378992875
+        },
+        {
+          "feature": "cvd",
+          "coef_per_sd": 0.07676858995757924,
+          "odds_ratio_per_sd": 1.0797921727261104
+        },
+        {
+          "feature": "missing_dx_htn",
+          "coef_per_sd": 0.059788412425203954,
+          "odds_ratio_per_sd": 1.0616118988928105
+        },
+        {
+          "feature": "missing_waist",
+          "coef_per_sd": 0.05572415214370058,
+          "odds_ratio_per_sd": 1.0573059879164082
+        },
+        {
+          "feature": "missing_bmi",
+          "coef_per_sd": 0.05136712238688427,
+          "odds_ratio_per_sd": 1.052709295499671
+        },
+        {
+          "feature": "bmi",
+          "coef_per_sd": 0.03484974755951519,
+          "odds_ratio_per_sd": 1.0354641161003462
+        },
+        {
+          "feature": "dx_prediabetes",
+          "coef_per_sd": 0.025676791438396754,
+          "odds_ratio_per_sd": 1.026009279893721
+        },
+        {
+          "feature": "missing_sbp",
+          "coef_per_sd": 0.013965164334373907,
+          "odds_ratio_per_sd": 1.014063132758974
+        },
+        {
+          "feature": "missing_dbp",
+          "coef_per_sd": 0.013965164334373907,
+          "odds_ratio_per_sd": 1.014063132758974
+        },
+        {
+          "feature": "smoke_now",
+          "coef_per_sd": 0.013756229471336087,
+          "odds_ratio_per_sd": 1.0138512817495207
+        },
+        {
+          "feature": "bp_meds",
+          "coef_per_sd": 0.011099988958610462,
+          "odds_ratio_per_sd": 1.0111618224078045
+        },
+        {
+          "feature": "waist",
+          "coef_per_sd": -0.006730363935034622,
+          "odds_ratio_per_sd": 0.9932922342379165
+        },
+        {
+          "feature": "missing_dx_chol",
+          "coef_per_sd": -0.01228051866625034,
+          "odds_ratio_per_sd": 0.9877945791752822
+        },
+        {
+          "feature": "smoke_ever",
+          "coef_per_sd": -0.014744096819399831,
+          "odds_ratio_per_sd": 0.9853640651401419
+        },
+        {
+          "feature": "missing_dx_diabetes",
+          "coef_per_sd": -0.10775995274052698,
+          "odds_ratio_per_sd": 0.8978430953389117
+        },
+        {
+          "feature": "missing_dx_prediabetes",
+          "coef_per_sd": -0.11278373694807134,
+          "odds_ratio_per_sd": 0.8933438364913077
+        },
+        {
+          "feature": "dbp",
+          "coef_per_sd": -0.11728740491175998,
+          "odds_ratio_per_sd": 0.8893295587465204
+        },
+        {
+          "feature": "missing_smoke_ever",
+          "coef_per_sd": -0.12566503076521637,
+          "odds_ratio_per_sd": 0.8819102101000673
+        },
+        {
+          "feature": "missing_smoke_now",
+          "coef_per_sd": -0.12566503076521637,
+          "odds_ratio_per_sd": 0.8819102101000673
+        },
+        {
+          "feature": "dx_chol",
+          "coef_per_sd": -0.14935218848106815,
+          "odds_ratio_per_sd": 0.8612657336078807
+        }
+      ]
+    },
+    {
+      "task": "alb_bmp",
+      "title": "Albuminuria with normal eGFR - who needs a UACR",
+      "lab": "uacr",
+      "n_train": 6912,
+      "cases_train": 766,
+      "n_test": 4778,
+      "cases_test": 451,
+      "prevalence_train_weighted": 0.08697932169176802,
+      "prevalence_test_weighted": 0.08136946310301597,
+      "chosen_model": "logistic",
+      "features_used": [
+        "age",
+        "female",
+        "bmi",
+        "waist",
+        "sbp",
+        "dbp",
+        "dx_htn",
+        "bp_meds",
+        "dx_chol",
+        "cvd",
+        "smoke_now",
+        "smoke_ever",
+        "dx_diabetes",
+        "dx_prediabetes",
+        "dx_borderline",
+        "glucose_serum",
+        "egfr"
+      ],
+      "features_dropped": [
+        "fam_dm"
+      ],
+      "cv_auroc_train": {
+        "logistic": 0.705541988088398,
+        "gbm": 0.709107996281675
+      },
+      "test": {
+        "logistic": {
+          "auroc": 0.7507894560128856,
+          "auprc": 0.2977589563859612,
+          "brier": 0.06625626400620942,
+          "obs_exp_ratio": 0.9146698731502724,
+          "calibration_slope": 1.0262662806434162
+        },
+        "gbm": {
+          "auroc": 0.7478666447078857,
+          "auprc": 0.28692244706404707,
+          "brier": 0.06726386815241278,
+          "obs_exp_ratio": 0.9578585012873314,
+          "calibration_slope": 0.8741507984977301
+        },
+        "logistic_unweighted (diagnostic)": {
+          "auroc": 0.7548544914985045,
+          "auprc": 0.31811898283719675,
+          "brier": 0.06541243214620394,
+          "obs_exp_ratio": 0.8457247476822318,
+          "calibration_slope": 1.068354281092593
+        },
+        "Guideline risk factor (any of DM/HTN/CVD/age>=60)": {
+          "auroc": 0.7067688918249271,
+          "auprc": 0.2027071372965893
+        }
+      },
+      "budgets": {
+        "5%": {
+          "share_flagged": 0.05020729398239789,
+          "sensitivity": 0.24672985228484806,
+          "ppv": 0.3998677088421264,
+          "number_needed_to_test": 2.500827093279529,
+          "lift": 4.914223267466849
+        },
+        "10%": {
+          "share_flagged": 0.10009709600462618,
+          "sensitivity": 0.3684907909376396,
+          "ppv": 0.2995481289049152,
+          "number_needed_to_test": 3.3383616971863224,
+          "lift": 3.6813334816487493
+        },
+        "20%": {
+          "share_flagged": 0.2000905580195024,
+          "sensitivity": 0.5641367961008735,
+          "ppv": 0.2294136648412443,
+          "number_needed_to_test": 4.358938255452247,
+          "lift": 2.8194073807615063
+        },
+        "30%": {
+          "share_flagged": 0.30003613607510915,
+          "sensitivity": 0.6902641438550802,
+          "ppv": 0.18719886050889054,
+          "number_needed_to_test": 5.341912858238299,
+          "lift": 2.300603363597123
+        }
+      },
+      "matched": {
+        "Guideline risk factor (any of DM/HTN/CVD/age>=60)": {
+          "baseline": {
+            "share_flagged": 0.4509766807217234,
+            "sensitivity": 0.7406995457600857,
+            "ppv": 0.13364399299469762,
+            "number_needed_to_test": 7.482566014318918,
+            "lift": 1.6424342486505121
+          },
+          "model": {
+            "share_flagged": 0.45120010489098505,
+            "sensitivity": 0.7671183355437332,
+            "ppv": 0.13834218215608393,
+            "number_needed_to_test": 7.228453277336298,
+            "lift": 1.7001732207688152
+          }
+        }
+      },
+      "ci95": {
+        "auroc": [
+          0.7120521957936407,
+          0.7888306567615219
+        ],
+        "sens@5%": [
+          0.2090447974772997,
+          0.296013764760316
+        ],
+        "ppv@5%": [
+          0.3334336868436284,
+          0.4820941158127407
+        ],
+        "sens@10%": [
+          0.32389533451592395,
+          0.42528056685656074
+        ],
+        "ppv@10%": [
+          0.26027242416984137,
+          0.3529013807997055
+        ],
+        "sens@20%": [
+          0.5067655098990075,
+          0.6267594686980374
+        ],
+        "ppv@20%": [
+          0.20103507606891047,
+          0.2601759851476735
+        ],
+        "sens@30%": [
+          0.6329089476722257,
+          0.7456405001915828
+        ],
+        "ppv@30%": [
+          0.16583673717599315,
+          0.2105144815381575
+        ],
+        "dsens|Guideline risk factor (any of DM/HTN/CVD/age>=60)": [
+          -0.013265084640244729,
+          0.0684528438438105
+        ],
+        "dppv|Guideline risk factor (any of DM/HTN/CVD/age>=60)": [
+          -0.002501390701493158,
+          0.012250699989051156
+        ],
+        "dauroc|Guideline risk factor (any of DM/HTN/CVD/age>=60)": [
+          0.01811852536937536,
+          0.07148132219685922
+        ]
+      },
+      "subgroups": [
+        {
+          "group": "sex",
+          "level": "Female",
+          "n": 2612,
+          "cases": 224,
+          "prevalence": 0.08286348038220433,
+          "share_flagged": 0.25217555959677695,
+          "sensitivity": 0.5541024200288376,
+          "ppv": 0.18207496033798176,
+          "number_needed_to_test": 5.49224340427548,
+          "lift": 2.197288353061791,
+          "obs_exp_ratio": 0.8223280206513113,
+          "small_sample": false
+        },
+        {
+          "group": "sex",
+          "level": "Male",
+          "n": 2166,
+          "cases": 227,
+          "prevalence": 0.07983420660025731,
+          "share_flagged": 0.1465678588636076,
+          "sensitivity": 0.5748394099307663,
+          "ppv": 0.31310990397348043,
+          "number_needed_to_test": 3.193766748702709,
+          "lift": 3.922001824872789,
+          "obs_exp_ratio": 1.0391276044744984,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "Hispanic",
+          "n": 846,
+          "cases": 77,
+          "prevalence": 0.07788525959800209,
+          "share_flagged": 0.19753744644407836,
+          "sensitivity": 0.5772954474048347,
+          "ppv": 0.22761661950813464,
+          "number_needed_to_test": 4.3933523051213825,
+          "lift": 2.9224608184264618,
+          "obs_exp_ratio": 0.8401653893512446,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "NH Asian",
+          "n": 274,
+          "cases": 30,
+          "prevalence": 0.1024956505119319,
+          "share_flagged": 0.1993516646122323,
+          "sensitivity": 0.6488988962968569,
+          "ppv": 0.33362808693767965,
+          "number_needed_to_test": 2.997349561240016,
+          "lift": 3.2550462899773565,
+          "obs_exp_ratio": 1.1177675223074697,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "NH Black",
+          "n": 524,
+          "cases": 71,
+          "prevalence": 0.10651560741197193,
+          "share_flagged": 0.28185676707863483,
+          "sensitivity": 0.6343422071155703,
+          "ppv": 0.23972227524739667,
+          "number_needed_to_test": 4.171493862921109,
+          "lift": 2.25058356302865,
+          "obs_exp_ratio": 1.007415545113377,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "NH White",
+          "n": 2844,
+          "cases": 238,
+          "prevalence": 0.07353254006071924,
+          "share_flagged": 0.1875543471838286,
+          "sensitivity": 0.5232794429897277,
+          "ppv": 0.20515689016197153,
+          "number_needed_to_test": 4.8743183775621635,
+          "lift": 2.7900150055004755,
+          "obs_exp_ratio": 0.8729678601567505,
+          "small_sample": false
+        },
+        {
+          "group": "race_ethnicity",
+          "level": "Other/Multi",
+          "n": 290,
+          "cases": 35,
+          "prevalence": 0.10786047945379318,
+          "share_flagged": 0.20010756749018158,
+          "sensitivity": 0.6204479880458917,
+          "ppv": 0.33442921877532084,
+          "number_needed_to_test": 2.9901693508180838,
+          "lift": 3.100572336307743,
+          "obs_exp_ratio": 1.1283597312947136,
+          "small_sample": false
+        },
+        {
+          "group": "age",
+          "level": "20-44",
+          "n": 1701,
+          "cases": 84,
+          "prevalence": 0.04860939360973032,
+          "share_flagged": 0.059242270393649536,
+          "sensitivity": 0.38732580716936066,
+          "ppv": 0.3178080868744049,
+          "number_needed_to_test": 3.146553034049104,
+          "lift": 6.5379973555314645,
+          "obs_exp_ratio": 0.820791817329338,
+          "small_sample": false
+        },
+        {
+          "group": "age",
+          "level": "45-64",
+          "n": 1720,
+          "cases": 164,
+          "prevalence": 0.08539176512180345,
+          "share_flagged": 0.2683100004935132,
+          "sensitivity": 0.6006928291679348,
+          "ppv": 0.19117521107790386,
+          "number_needed_to_test": 5.230803692391375,
+          "lift": 2.2388014910478793,
+          "obs_exp_ratio": 0.7971222453201967,
+          "small_sample": false
+        },
+        {
+          "group": "age",
+          "level": "65+",
+          "n": 1357,
+          "cases": 203,
+          "prevalence": 0.15664200975809342,
+          "share_flagged": 0.42948590555743976,
+          "sensitivity": 0.6657985643942073,
+          "ppv": 0.24282991332485976,
+          "number_needed_to_test": 4.11810878778428,
+          "lift": 1.5502221511321816,
+          "obs_exp_ratio": 1.2009261159841966,
+          "small_sample": false
+        },
+        {
+          "group": "income",
+          "level": "PIR<1.3 (low income)",
+          "n": 832,
+          "cases": 92,
+          "prevalence": 0.09144021981298706,
+          "share_flagged": 0.22475093862162365,
+          "sensitivity": 0.6468031225565595,
+          "ppv": 0.26315271502322385,
+          "number_needed_to_test": 3.8000747965368613,
+          "lift": 2.877866168316547,
+          "obs_exp_ratio": 0.9076551763807224,
+          "small_sample": false
+        },
+        {
+          "group": "income",
+          "level": "PIR>=1.3",
+          "n": 3357,
+          "cases": 294,
+          "prevalence": 0.07694919535160508,
+          "share_flagged": 0.1967623260474487,
+          "sensitivity": 0.5155145388189811,
+          "ppv": 0.20160581423807955,
+          "number_needed_to_test": 4.960174406572838,
+          "lift": 2.6199859961742185,
+          "obs_exp_ratio": 0.9004420968142647,
+          "small_sample": false
+        },
+        {
+          "group": "income",
+          "level": "Unknown",
+          "n": 589,
+          "cases": 65,
+          "prevalence": 0.09325454678751291,
+          "share_flagged": 0.18862343651978838,
+          "sensitivity": 0.6843851536580323,
+          "ppv": 0.3383568262249672,
+          "number_needed_to_test": 2.955459806018864,
+          "lift": 3.628314520641414,
+          "obs_exp_ratio": 0.9938041306778747,
+          "small_sample": false
+        }
+      ],
+      "coefficients": [
+        {
+          "feature": "dx_diabetes",
+          "coef_per_sd": 0.5415813790825631,
+          "odds_ratio_per_sd": 1.718722666334225
+        },
+        {
+          "feature": "age",
+          "coef_per_sd": 0.3130907373747838,
+          "odds_ratio_per_sd": 1.367645621971049
+        },
+        {
+          "feature": "dx_htn",
+          "coef_per_sd": 0.2744269143022193,
+          "odds_ratio_per_sd": 1.3157764061181252
+        },
+        {
+          "feature": "glucose_serum",
+          "coef_per_sd": 0.2721450405896891,
+          "odds_ratio_per_sd": 1.3127773935107614
+        },
+        {
+          "feature": "egfr",
+          "coef_per_sd": 0.2615161332251925,
+          "odds_ratio_per_sd": 1.298897896815148
+        },
+        {
+          "feature": "dx_borderline",
+          "coef_per_sd": 0.2269971777228774,
+          "odds_ratio_per_sd": 1.2548263264676478
+        },
+        {
+          "feature": "female",
+          "coef_per_sd": 0.21407624033943265,
+          "odds_ratio_per_sd": 1.2387170914049765
+        },
+        {
+          "feature": "sbp",
+          "coef_per_sd": 0.19244752156192674,
+          "odds_ratio_per_sd": 1.2122128869992839
+        },
+        {
+          "feature": "missing_cvd",
+          "coef_per_sd": 0.1423633184773695,
+          "odds_ratio_per_sd": 1.1529954770094575
+        },
+        {
+          "feature": "missing_bmi",
+          "coef_per_sd": 0.06741771805320679,
+          "odds_ratio_per_sd": 1.0697422355028507
+        },
+        {
+          "feature": "dbp",
+          "coef_per_sd": 0.05633227065734092,
+          "odds_ratio_per_sd": 1.0579491508020515
+        },
+        {
+          "feature": "smoke_now",
+          "coef_per_sd": 0.0534140908782219,
+          "odds_ratio_per_sd": 1.0548663652317936
+        },
+        {
+          "feature": "missing_waist",
+          "coef_per_sd": 0.049951342377832504,
+          "odds_ratio_per_sd": 1.0512199452686768
+        },
+        {
+          "feature": "bmi",
+          "coef_per_sd": 0.043097796218348194,
+          "odds_ratio_per_sd": 1.0440399930212454
+        },
+        {
+          "feature": "cvd",
+          "coef_per_sd": 0.02677235181188593,
+          "odds_ratio_per_sd": 1.0271339509636428
+        },
+        {
+          "feature": "missing_dx_htn",
+          "coef_per_sd": 0.02319573786882803,
+          "odds_ratio_per_sd": 1.0234668511625562
+        },
+        {
+          "feature": "dx_prediabetes",
+          "coef_per_sd": 0.009122074238610379,
+          "odds_ratio_per_sd": 1.0091638071582258
+        },
+        {
+          "feature": "missing_dx_chol",
+          "coef_per_sd": -0.012001547121144986,
+          "odds_ratio_per_sd": 0.9880701841964733
+        },
+        {
+          "feature": "missing_sbp",
+          "coef_per_sd": -0.017138951803119824,
+          "odds_ratio_per_sd": 0.9830070845378385
+        },
+        {
+          "feature": "missing_dbp",
+          "coef_per_sd": -0.017138951803119824,
+          "odds_ratio_per_sd": 0.9830070845378385
+        },
+        {
+          "feature": "bp_meds",
+          "coef_per_sd": -0.03046460617645976,
+          "odds_ratio_per_sd": 0.969994763283137
+        },
+        {
+          "feature": "waist",
+          "coef_per_sd": -0.06071830559602108,
+          "odds_ratio_per_sd": 0.9410883017492725
+        },
+        {
+          "feature": "smoke_ever",
+          "coef_per_sd": -0.06786011657120719,
+          "odds_ratio_per_sd": 0.9343911702765813
+        },
+        {
+          "feature": "missing_dx_diabetes",
+          "coef_per_sd": -0.07183389348054353,
+          "odds_ratio_per_sd": 0.9306854758975803
+        },
+        {
+          "feature": "dx_chol",
+          "coef_per_sd": -0.09702861519444014,
+          "odds_ratio_per_sd": 0.907530036613255
+        },
+        {
+          "feature": "missing_smoke_now",
+          "coef_per_sd": -0.10732753106002445,
+          "odds_ratio_per_sd": 0.898231426114298
+        },
+        {
+          "feature": "missing_smoke_ever",
+          "coef_per_sd": -0.10732753106002445,
+          "odds_ratio_per_sd": 0.898231426114298
+        },
+        {
+          "feature": "missing_glucose_serum",
+          "coef_per_sd": -0.15318703400457692,
+          "odds_ratio_per_sd": 0.8579692373815676
+        },
+        {
+          "feature": "missing_dx_prediabetes",
+          "coef_per_sd": -0.23375287471513234,
+          "odds_ratio_per_sd": 0.7915574055763528
+        }
+      ]
+    }
+  ],
+  "forecasts": [
+    {
+      "task": "dm_visit",
+      "baseline": "ADA risk test (>=5)",
+      "population": "all",
+      "panel_size": 10000,
+      "capacity": 0.2,
+      "n_test_rows": 4911,
+      "summary": {
+        "tests_ordered": {
+          "p10": 981.57623235489,
+          "p50": 1203.7870644464847,
+          "p90": 1426.0628003774577
+        },
+        "new_dx_guideline": {
+          "p10": 45.321672940977024,
+          "p50": 58.223405029884105,
+          "p90": 74.41216154211743
+        },
+        "new_dx_model": {
+          "p10": 61.72005162393251,
+          "p50": 79.72847512023988,
+          "p90": 100.70292303650514
+        },
+        "incremental_dx": {
+          "p10": 12.370530193969442,
+          "p50": 20.953476440344364,
+          "p90": 31.402048884486703
+        },
+        "lab_cost_usd": {
+          "p10": 11571.013968133639,
+          "p50": 15736.066086671879,
+          "p90": 21191.576737659892
+        },
+        "lab_cost_per_dx_model": {
+          "p10": 147.32720030720563,
+          "p50": 199.02000515360356,
+          "p90": 263.6820538905807
+        },
+        "lab_cost_per_dx_guideline": {
+          "p10": 200.38349110372982,
+          "p50": 270.7365646328135,
+          "p90": 362.44159890768697
+        },
+        "incremental_raf_value_usd": {
+          "p10": 24181.09530309087,
+          "p50": 41596.59044394399,
+          "p90": 62904.12479276429
+        },
+        "prob_incremental_dx_positive": 0.999
+      },
+      "tornado": [
+        {
+          "assumption": "complete",
+          "low": 0.4,
+          "high": 0.8,
+          "incremental_dx_low": 14.31976904502033,
+          "incremental_dx_high": 28.63953809004066,
+          "raf_value_low": 28524.979937680502,
+          "raf_value_high": 57049.959875361004
+        },
+        {
+          "assumption": "confirm",
+          "low": 0.7,
+          "high": 0.95,
+          "incremental_dx_low": 17.689126467378053,
+          "incremental_dx_high": 24.006671634298783,
+          "raf_value_low": 35236.739923017085,
+          "raf_value_high": 47821.28989552319
+        },
+        {
+          "assumption": "usd_raf",
+          "low": 10000,
+          "high": 14000,
+          "incremental_dx_low": 21.479653567530498,
+          "incremental_dx_high": 21.479653567530498,
+          "raf_value_low": 35656.22492210062,
+          "raf_value_high": 49918.714890940864
+        }
+      ]
+    },
+    {
+      "task": "dm_visit",
+      "baseline": "ADA risk test (>=5)",
+      "population": "65+",
+      "panel_size": 10000,
+      "capacity": 0.2,
+      "n_test_rows": 1495,
+      "summary": {
+        "tests_ordered": {
+          "p10": 986.9044205841477,
+          "p50": 1200.977953139315,
+          "p90": 1406.6963044311915
+        },
+        "new_dx_guideline": {
+          "p10": 42.74971816085225,
+          "p50": 57.27813663424024,
+          "p90": 74.27846772742957
+        },
+        "new_dx_model": {
+          "p10": 79.10834194603868,
+          "p50": 111.08226710313656,
+          "p90": 147.81754283609956
+        },
+        "incremental_dx": {
+          "p10": 31.917473316696753,
+          "p50": 53.89910824406965,
+          "p90": 77.98568456691974
+        },
+        "lab_cost_usd": {
+          "p10": 11511.892610653998,
+          "p50": 15668.34119822765,
+          "p90": 21063.64555090236
+        },
+        "lab_cost_per_dx_model": {
+          "p10": 100.50034853903516,
+          "p50": 141.94868063265363,
+          "p90": 206.3239538269863
+        },
+        "lab_cost_per_dx_guideline": {
+          "p10": 200.70231729321475,
+          "p50": 274.62578606592416,
+          "p90": 384.6990121122577
+        },
+        "incremental_raf_value_usd": {
+          "p10": 62686.17414131605,
+          "p50": 106410.0411787675,
+          "p90": 155769.77664464372
+        },
+        "prob_incremental_dx_positive": 1.0
+      },
+      "tornado": [
+        {
+          "assumption": "complete",
+          "low": 0.4,
+          "high": 0.8,
+          "incremental_dx_low": 37.26106017778297,
+          "incremental_dx_high": 74.52212035556595,
+          "raf_value_low": 74224.03187414368,
+          "raf_value_high": 148448.06374828736
+        },
+        {
+          "assumption": "confirm",
+          "low": 0.7,
+          "high": 0.95,
+          "incremental_dx_low": 46.028368454908374,
+          "incremental_dx_high": 62.467071474518505,
+          "raf_value_low": 91688.50996217746,
+          "raf_value_high": 124434.40637724083
+        },
+        {
+          "assumption": "usd_raf",
+          "low": 10000,
+          "high": 14000,
+          "incremental_dx_low": 55.89159026667445,
+          "incremental_dx_high": 55.89159026667445,
+          "raf_value_low": 92780.03984267957,
+          "raf_value_high": 129892.0557797514
+        }
+      ]
+    },
+    {
+      "task": "dm_bmp",
+      "baseline": "ADA risk test (>=5)",
+      "population": "all",
+      "panel_size": 10000,
+      "capacity": 0.2,
+      "n_test_rows": 4665,
+      "summary": {
+        "tests_ordered": {
+          "p10": 983.6405252981876,
+          "p50": 1204.675620529962,
+          "p90": 1414.8023667807831
+        },
+        "new_dx_guideline": {
+          "p10": 45.040564483999404,
+          "p50": 58.870130944199076,
+          "p90": 74.3202005493394
+        },
+        "new_dx_model": {
+          "p10": 89.05338208138978,
+          "p50": 115.41645930737045,
+          "p90": 144.22752908996182
+        },
+        "incremental_dx": {
+          "p10": 41.78878566843455,
+          "p50": 56.3415176672751,
+          "p90": 73.24775921411265
+        },
+        "lab_cost_usd": {
+          "p10": 11477.969477215074,
+          "p50": 15622.130493534241,
+          "p90": 21096.540244111155
+        },
+        "lab_cost_per_dx_model": {
+          "p10": 102.30555876554553,
+          "p50": 135.98037709934277,
+          "p90": 181.50154406946638
+        },
+        "lab_cost_per_dx_guideline": {
+          "p10": 199.56605661635356,
+          "p50": 268.0412603246542,
+          "p90": 366.42042889395657
+        },
+        "incremental_raf_value_usd": {
+          "p10": 81636.55326291312,
+          "p50": 112071.08848807149,
+          "p90": 146411.49884554066
+        },
+        "prob_incremental_dx_positive": 1.0
+      },
+      "tornado": [
+        {
+          "assumption": "complete",
+          "low": 0.4,
+          "high": 0.8,
+          "incremental_dx_low": 38.02529935698943,
+          "incremental_dx_high": 76.05059871397886,
+          "raf_value_low": 75746.39631912293,
+          "raf_value_high": 151492.79263824585
+        },
+        {
+          "assumption": "confirm",
+          "low": 0.7,
+          "high": 0.95,
+          "incremental_dx_low": 46.97242861745752,
+          "incremental_dx_high": 63.748295980835195,
+          "raf_value_low": 93569.07780597538,
+          "raf_value_high": 126986.60559382374
+        },
+        {
+          "assumption": "usd_raf",
+          "low": 10000,
+          "high": 14000,
+          "incremental_dx_low": 57.03794903548413,
+          "incremental_dx_high": 57.03794903548413,
+          "raf_value_low": 94682.99539890366,
+          "raf_value_high": 132556.1935584651
+        }
+      ]
+    },
+    {
+      "task": "dm_bmp",
+      "baseline": "ADA risk test (>=5)",
+      "population": "65+",
+      "panel_size": 10000,
+      "capacity": 0.2,
+      "n_test_rows": 1418,
+      "summary": {
+        "tests_ordered": {
+          "p10": 977.6675885043614,
+          "p50": 1202.5664104595467,
+          "p90": 1412.7838227215307
+        },
+        "new_dx_guideline": {
+          "p10": 45.187641732604675,
+          "p50": 60.20064482077167,
+          "p90": 77.68855300555978
+        },
+        "new_dx_model": {
+          "p10": 132.24899150125418,
+          "p50": 176.17959819054778,
+          "p90": 231.69203931980806
+        },
+        "incremental_dx": {
+          "p10": 85.29473365573541,
+          "p50": 116.53702866485546,
+          "p90": 155.0471611017597
+        },
+        "lab_cost_usd": {
+          "p10": 11619.514972194112,
+          "p50": 15682.47491770532,
+          "p90": 21253.44817379466
+        },
+        "lab_cost_per_dx_model": {
+          "p10": 64.06107264997758,
+          "p50": 89.54772323368795,
+          "p90": 123.85660405965258
+        },
+        "lab_cost_per_dx_guideline": {
+          "p10": 189.90380682612124,
+          "p50": 263.18647903502153,
+          "p90": 362.88990986928206
+        },
+        "incremental_raf_value_usd": {
+          "p10": 167609.9837732514,
+          "p50": 231546.8047827591,
+          "p90": 313883.0212076119
+        },
+        "prob_incremental_dx_positive": 1.0
+      },
+      "tornado": [
+        {
+          "assumption": "complete",
+          "low": 0.4,
+          "high": 0.8,
+          "incremental_dx_low": 80.62319635829368,
+          "incremental_dx_high": 161.24639271658737,
+          "raf_value_low": 160601.407145721,
+          "raf_value_high": 321202.814291442
+        },
+        {
+          "assumption": "confirm",
+          "low": 0.7,
+          "high": 0.95,
+          "incremental_dx_low": 99.59336020730393,
+          "incremental_dx_high": 135.16241742419822,
+          "raf_value_low": 198389.9735329494,
+          "raf_value_high": 269243.53550900274
+        },
+        {
+          "assumption": "usd_raf",
+          "low": 10000,
+          "high": 14000,
+          "incremental_dx_low": 120.93479453744051,
+          "incremental_dx_high": 120.93479453744051,
+          "raf_value_low": 200751.75893215116,
+          "raf_value_high": 281052.46250501164
+        }
+      ]
+    },
+    {
+      "task": "ckd_visit",
+      "baseline": "Guideline risk factor (any of DM/HTN/CVD/age>=60)",
+      "population": "all",
+      "panel_size": 10000,
+      "capacity": 0.2,
+      "n_test_rows": 5118,
+      "summary": {
+        "tests_ordered": {
+          "p10": 988.9720074331428,
+          "p50": 1207.0854109037796,
+          "p90": 1421.23083521042
+        },
+        "new_dx_guideline": {
+          "p10": 171.32658388842827,
+          "p50": 212.27309474782805,
+          "p90": 257.5267979516873
+        },
+        "new_dx_model": {
+          "p10": 275.65272304761737,
+          "p50": 340.8044024187903,
+          "p90": 413.8068539612623
+        },
+        "incremental_dx": {
+          "p10": 102.39174087448617,
+          "p50": 129.16267515815144,
+          "p90": 158.6704696321872
+        },
+        "lab_cost_usd": {
+          "p10": 11474.027220894666,
+          "p50": 15531.549047113063,
+          "p90": 21105.196898717986
+        },
+        "lab_cost_per_dx_model": {
+          "p10": 34.82043879695158,
+          "p50": 45.92704351802611,
+          "p90": 59.90915068606764
+        },
+        "lab_cost_per_dx_guideline": {
+          "p10": 56.03404387150449,
+          "p50": 73.78162022483097,
+          "p90": 95.89906527881985
+        },
+        "incremental_raf_value_usd": {
+          "p10": 75337.56195470017,
+          "p50": 97287.82124692525,
+          "p90": 125284.69632539748
+        },
+        "prob_incremental_dx_positive": 1.0
+      },
+      "tornado": [
+        {
+          "assumption": "complete",
+          "low": 0.4,
+          "high": 0.8,
+          "incremental_dx_low": 88.5723599296166,
+          "incremental_dx_high": 177.1447198592332,
+          "raf_value_low": 67787.7395159162,
+          "raf_value_high": 135575.4790318324
+        },
+        {
+          "assumption": "confirm",
+          "low": 0.7,
+          "high": 0.95,
+          "incremental_dx_low": 109.41291520717348,
+          "incremental_dx_high": 148.4889563525926,
+          "raf_value_low": 83737.79587260235,
+          "raf_value_high": 113644.1515413889
+        },
+        {
+          "assumption": "usd_raf",
+          "low": 10000,
+          "high": 14000,
+          "incremental_dx_low": 132.8585398944249,
+          "incremental_dx_high": 132.8585398944249,
+          "raf_value_low": 84734.67439489524,
+          "raf_value_high": 118628.54415285333
+        }
+      ]
+    },
+    {
+      "task": "ckd_visit",
+      "baseline": "Guideline risk factor (any of DM/HTN/CVD/age>=60)",
+      "population": "65+",
+      "panel_size": 10000,
+      "capacity": 0.2,
+      "n_test_rows": 1633,
+      "summary": {
+        "tests_ordered": {
+          "p10": 987.4109505155833,
+          "p50": 1208.728698429845,
+          "p90": 1421.0445897439602
+        },
+        "new_dx_guideline": {
+          "p10": 240.39725368639787,
+          "p50": 297.9812471459504,
+          "p90": 360.0815047141301
+        },
+        "new_dx_model": {
+          "p10": 417.7974781317627,
+          "p50": 522.1604422282733,
+          "p90": 640.5171843134807
+        },
+        "incremental_dx": {
+          "p10": 170.02954285724093,
+          "p50": 222.2520671935041,
+          "p90": 288.18628007785617
+        },
+        "lab_cost_usd": {
+          "p10": 11505.351490154268,
+          "p50": 15774.226497594596,
+          "p90": 20838.489681844425
+        },
+        "lab_cost_per_dx_model": {
+          "p10": 22.947379070726033,
+          "p50": 30.170967415390137,
+          "p90": 39.41434277711033
+        },
+        "lab_cost_per_dx_guideline": {
+          "p10": 40.28886702900105,
+          "p50": 52.921684942326124,
+          "p90": 68.43858309751609
+        },
+        "incremental_raf_value_usd": {
+          "p10": 104849.60987692558,
+          "p50": 161311.43954210618,
+          "p90": 225580.00335616493
+        },
+        "prob_incremental_dx_positive": 1.0
+      },
+      "tornado": [
+        {
+          "assumption": "complete",
+          "low": 0.4,
+          "high": 0.8,
+          "incremental_dx_low": 153.47551139220286,
+          "incremental_dx_high": 306.9510227844057,
+          "raf_value_low": 111543.95692352188,
+          "raf_value_high": 223087.91384704376
+        },
+        {
+          "assumption": "confirm",
+          "low": 0.7,
+          "high": 0.95,
+          "incremental_dx_low": 189.58739642566232,
+          "incremental_dx_high": 257.2971808633989,
+          "raf_value_low": 137789.5938467035,
+          "raf_value_high": 187000.16307766904
+        },
+        {
+          "assumption": "usd_raf",
+          "low": 10000,
+          "high": 14000,
+          "incremental_dx_low": 230.21326708830424,
+          "incremental_dx_high": 230.21326708830424,
+          "raf_value_low": 139429.94615440234,
+          "raf_value_high": 195201.92461616328
+        }
+      ]
+    },
+    {
+      "task": "alb_bmp",
+      "baseline": "Guideline risk factor (any of DM/HTN/CVD/age>=60)",
+      "population": "all",
+      "panel_size": 10000,
+      "capacity": 0.2,
+      "n_test_rows": 4778,
+      "summary": {
+        "tests_ordered": {
+          "p10": 983.7101681358974,
+          "p50": 1206.0914816221152,
+          "p90": 1420.0211061967484
+        },
+        "new_dx_guideline": {
+          "p10": 106.95685620050159,
+          "p50": 133.3211977060859,
+          "p90": 162.27114920203616
+        },
+        "new_dx_model": {
+          "p10": 182.65832805747405,
+          "p50": 228.81000487419618,
+          "p90": 279.2918150475315
+        },
+        "incremental_dx": {
+          "p10": 74.70178679659561,
+          "p50": 95.05276744370657,
+          "p90": 118.43681757658065
+        },
+        "lab_cost_usd": {
+          "p10": 11524.30887748939,
+          "p50": 15815.3543240656,
+          "p90": 20974.68351845038
+        },
+        "lab_cost_per_dx_model": {
+          "p10": 52.53844041498377,
+          "p50": 68.9918003336173,
+          "p90": 90.40322144568216
+        },
+        "lab_cost_per_dx_guideline": {
+          "p10": 90.04815084884231,
+          "p50": 118.49282426238452,
+          "p90": 154.05050954564246
+        },
+        "incremental_raf_value_usd": {
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "prob_incremental_dx_positive": 1.0
+      },
+      "tornado": [
+        {
+          "assumption": "complete",
+          "low": 0.4,
+          "high": 0.8,
+          "incremental_dx_low": 65.19401269591013,
+          "incremental_dx_high": 130.38802539182026,
+          "raf_value_low": 0.0,
+          "raf_value_high": 0.0
+        },
+        {
+          "assumption": "confirm",
+          "low": 0.7,
+          "high": 0.95,
+          "incremental_dx_low": 80.53378038906548,
+          "incremental_dx_high": 109.29584481373169,
+          "raf_value_low": 0.0,
+          "raf_value_high": 0.0
+        },
+        {
+          "assumption": "usd_raf",
+          "low": 10000,
+          "high": 14000,
+          "incremental_dx_low": 97.79101904386522,
+          "incremental_dx_high": 97.79101904386522,
+          "raf_value_low": 0.0,
+          "raf_value_high": 0.0
+        }
+      ]
+    },
+    {
+      "task": "alb_bmp",
+      "baseline": "Guideline risk factor (any of DM/HTN/CVD/age>=60)",
+      "population": "65+",
+      "panel_size": 10000,
+      "capacity": 0.2,
+      "n_test_rows": 1357,
+      "summary": {
+        "tests_ordered": {
+          "p10": 972.0183726897546,
+          "p50": 1204.7978736555224,
+          "p90": 1429.4520952025696
+        },
+        "new_dx_guideline": {
+          "p10": 122.4974821314019,
+          "p50": 155.76532279238944,
+          "p90": 193.1220806733365
+        },
+        "new_dx_model": {
+          "p10": 242.46775994117658,
+          "p50": 311.7841128834697,
+          "p90": 396.9325202875923
+        },
+        "incremental_dx": {
+          "p10": 112.43720822911318,
+          "p50": 155.86938027725273,
+          "p90": 209.9964203788707
+        },
+        "lab_cost_usd": {
+          "p10": 11454.969066073434,
+          "p50": 15697.592512331756,
+          "p90": 21181.975486473064
+        },
+        "lab_cost_per_dx_model": {
+          "p10": 37.430720105999946,
+          "p50": 50.33500412802405,
+          "p90": 67.3526138994024
+        },
+        "lab_cost_per_dx_guideline": {
+          "p10": 76.33480385440133,
+          "p50": 100.800327899265,
+          "p90": 132.8459748506733
+        },
+        "incremental_raf_value_usd": {
+          "p10": 0.0,
+          "p50": 0.0,
+          "p90": 0.0
+        },
+        "prob_incremental_dx_positive": 1.0
+      },
+      "tornado": [
+        {
+          "assumption": "complete",
+          "low": 0.4,
+          "high": 0.8,
+          "incremental_dx_low": 105.64835569516707,
+          "incremental_dx_high": 211.29671139033414,
+          "raf_value_low": 0.0,
+          "raf_value_high": 0.0
+        },
+        {
+          "assumption": "confirm",
+          "low": 0.7,
+          "high": 0.95,
+          "incremental_dx_low": 130.506792329324,
+          "incremental_dx_high": 177.11636101836834,
+          "raf_value_low": 0.0,
+          "raf_value_high": 0.0
+        },
+        {
+          "assumption": "usd_raf",
+          "low": 10000,
+          "high": 14000,
+          "incremental_dx_low": 158.47253354275057,
+          "incremental_dx_high": 158.47253354275057,
+          "raf_value_low": 0.0,
+          "raf_value_high": 0.0
+        }
+      ]
+    }
+  ]
+}

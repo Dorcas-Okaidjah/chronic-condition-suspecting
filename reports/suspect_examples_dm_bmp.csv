@@ -1,0 +1,11 @@
+seqn,age,female,p,y,reasons,task
+137535,58.0,1.0,1.0,1.0,glucose_serum=898; dx_prediabetes; smoke_ever,dm_bmp
+131135,64.0,1.0,0.9999978084642034,1.0,glucose_serum=294; dx_borderline; smoke_ever,dm_bmp
+135537,41.0,0.0,0.9999942446892488,1.0,glucose_serum=318; smoke_ever; waist=120,dm_bmp
+140621,65.0,1.0,0.9999912657903168,1.0,glucose_serum=321; age=65; smoke_now,dm_bmp
+141238,50.0,1.0,0.9999863809613119,1.0,glucose_serum=295; dx_prediabetes; bp_meds,dm_bmp
+136250,71.0,0.0,0.9999220105254288,1.0,glucose_serum=266; dx_prediabetes; age=71,dm_bmp
+139128,43.0,0.0,0.9998931956039186,1.0,glucose_serum=282; smoke_ever; dx_chol,dm_bmp
+140174,61.0,1.0,0.999835985367059,1.0,glucose_serum=233; dx_borderline; bp_meds,dm_bmp
+135721,68.0,0.0,0.9995560165206432,1.0,glucose_serum=243; dx_borderline; age=68,dm_bmp
+141428,32.0,0.0,0.9995264495721924,1.0,glucose_serum=257; bmi=44; bp_meds,dm_bmp

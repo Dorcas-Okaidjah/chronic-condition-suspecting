@@ -1,0 +1,11 @@
+seqn,age,female,p,y,reasons,task
+137535,58.0,1.0,0.9893666112931051,1.0,glucose_serum=898; sbp=158; female,alb_bmp
+130914,40.0,1.0,0.9465530425957795,1.0,glucose_serum=488; dx_diabetes; dx_htn,alb_bmp
+135544,67.0,1.0,0.9418678655708524,1.0,glucose_serum=601; dx_diabetes; dx_htn,alb_bmp
+133541,46.0,1.0,0.9355663597472382,1.0,glucose_serum=466; dx_diabetes; sbp=185,alb_bmp
+140445,47.0,1.0,0.8725939952432057,0.0,glucose_serum=459; dx_diabetes; dx_htn,alb_bmp
+136155,68.0,0.0,0.8499725742448201,1.0,glucose_serum=581; dx_diabetes; dx_htn,alb_bmp
+130415,61.0,1.0,0.8297799450246447,0.0,glucose_serum=475; dx_diabetes; dx_htn,alb_bmp
+140143,59.0,0.0,0.8178056413709829,1.0,glucose_serum=549; dx_diabetes; age=59,alb_bmp
+133645,58.0,0.0,0.8118141731926412,0.0,glucose_serum=471; dx_diabetes; dx_htn,alb_bmp
+134329,62.0,0.0,0.8037493260196042,0.0,glucose_serum=414; dx_diabetes; dx_htn,alb_bmp
