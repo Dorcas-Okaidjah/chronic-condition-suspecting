@@ -4,7 +4,7 @@
 
 This project builds and evaluates "suspecting" models of the kind a PCP-facing clinical assistant would use. It uses nationally representative, lab-confirmed data from NHANES. It compares the models against the screening guidelines clinics already follow. Then it turns the results into an impact forecast for a 10,000-patient panel, with uncertainty.
 
-> Status: pipeline complete and tested. Run `python run_all.py` to download the data and get results in `reports/summary.md`. *(Replace this line with the headline numbers after your run.)*
+> Status: pipeline complete and tested; results on real NHANES data coming next.
 
 ---
 
@@ -54,12 +54,14 @@ eGFR uses the race-free **CKD-EPI 2021** equation. **Race/ethnicity and income a
 
 ## Results
 
-*Fill in from `reports/summary.md` after running.*
+*Results from the real NHANES run will be added here: headline tables plus gain, calibration, subgroup and impact charts.*
 
+<!-- Figures (uncomment after the real run commits reports/figures/):
 | | |
 |---|---|
 | ![gain](reports/figures/gain_charts.png) | ![impact](reports/figures/impact.png) |
 | ![calibration](reports/figures/calibration.png) | ![subgroups](reports/figures/subgroups.png) |
+-->
 
 Example of a physician-facing suspect line (`reports/suspect_examples_*.csv`):
 `p=0.31 · reasons: age=67; bmi=38; dx_htn`
