@@ -4,7 +4,7 @@
 
 This project builds and evaluates "suspecting" models of the kind a PCP-facing clinical assistant would use. It uses nationally representative, lab-confirmed data from NHANES. It compares the models against the screening guidelines clinics already follow. Then it turns the results into an impact forecast for a 10,000-patient panel, with uncertainty.
 
-> **Headline (2021-2023 test cycle, survey-weighted):** With routine labs on file, the diabetes model reaches **AUROC 0.94** and finds **95% of undiagnosed cases** when testing the same number of adults as the ADA risk test, which finds 63%. With only visit data, it finds **86% vs. 68% for USPSTF** at the same testing volume. If a care team can test 20% of a 10,000-adult panel, the models add **~56 diabetes** and **~129 CKD** confirmed diagnoses over guideline-based selection, at roughly half the lab cost per diagnosis. Walkthrough: [`results.ipynb`](results.ipynb).
+> **Headline (2021-2023 test cycle, survey-weighted):** With routine labs on file, the diabetes model reaches **AUROC 0.94** and finds **95% of undiagnosed cases** when testing the same number of adults as the ADA risk test, which finds 63%. With only visit data, it finds **86% vs. 68% for USPSTF** at the same testing volume. If a care team can test 20% of a 10,000-adult panel, the models add **~56 diabetes** and **~129 CKD** confirmed diagnoses over guideline-based selection, at 50-65% of the lab cost per diagnosis. Walkthrough: [`results.ipynb`](results.ipynb).
 
 ---
 
@@ -63,7 +63,7 @@ Train: NHANES 2017-March 2020. Test: NHANES August 2021-August 2023. Full tables
 | Undiagnosed CKD, visit data | 5,118 (791) | 0.783 (0.756-0.807) | 0.751 | 80% → 83% (+0.1 to +5 pts) |
 | Albuminuria with normal eGFR | 4,778 (451) | 0.751 (0.712-0.789) | 0.707 | 74% → 77% (-1 to +7 pts) |
 
-**Impact forecast** (10,000-adult panel, testing capacity 20%, median [P10-P90]): **+56 [42-73]** extra confirmed diabetes diagnoses when routine labs are available, **+129 [102-159]** CKD and **+95 [75-118]** albuminuria, with lab cost per diagnosis about half the guideline strategy's. In a 65+ (Medicare Advantage-like) panel, documenting the extra confirmed diabetes and stage-3 CKD diagnoses is worth about **$230K and $160K per year** in CMS-HCC V28 risk adjustment, under the assumptions in `config.py`.
+**Impact forecast** (10,000-adult panel, testing capacity 20%, median [P10-P90]): **+56 [42-73]** extra confirmed diabetes diagnoses when routine labs are available, **+129 [102-159]** CKD and **+95 [75-118]** albuminuria, with lab cost per diagnosis at 50-65% of the guideline strategy's. In a 65+ (Medicare Advantage-like) panel, documenting the extra confirmed diabetes and stage-3 CKD diagnoses is worth about **$230K and $160K per year** in CMS-HCC V28 risk adjustment, under the assumptions in `config.py`.
 
 | | |
 |---|---|
